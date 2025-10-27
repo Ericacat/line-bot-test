@@ -23,8 +23,19 @@ export default async function handler(req, res) {
         await Promise.all(
             events.map(async (event) => {
                 if (event.type === 'message' && event.message.type === 'text') {
-                    const replyText = `你說：「${event.message.text}」`;
-                    await client.replyMessage(event.replyToken, { type: 'text', text: replyText });
+                    // 當用戶說 "你好"
+                    if (event.message.text.includes('你好')) {
+                        await client.replyMessage(event.replyToken, {
+                            type: 'audio',
+                            originalContentUrl: 'https://line-bot-test-ruby.vercel.app/hello.m4a',
+                            duration: 2000 // 單位：毫秒
+                        });
+                    } else {
+                        await client.replyMessage(event.replyToken, {
+                            type: 'text',
+                            text: `你說：「${event.message.text}」`
+                        });
+                    }
                 }
             })
         );
