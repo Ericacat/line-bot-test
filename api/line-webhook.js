@@ -1,4 +1,3 @@
-// api/line-webhook.js
 import { middleware, Client } from '@line/bot-sdk';
 
 const config = {
@@ -22,13 +21,18 @@ export default async function handler(req, res) {
             if (event.type !== 'message' || event.message.type !== 'text') return;
 
             const text = event.message.text.trim();
-            const ttsUrl = `${baseUrl}/api/tts-google?text=${encodeURIComponent(text)}`;
-            const estDuration = Math.min(8000, Math.max(1200, text.length * 300)); // 粗估毫秒
+            if (!text) return;
+
+            // 產生 TTS 音檔網址（記得做 URL encode）
+            const ttsUrl = `${baseUrl}/api/tts?text=${encodeURIComponent(text)}`;
+
+            // 粗估時長(毫秒)；太短會被 LINE 視為 0 秒
+            const estDuration = Math.min(8000, Math.max(1200, text.length * 300));
 
             await client.replyMessage(event.replyToken, {
                 type: 'audio',
                 originalContentUrl: ttsUrl,
-                duration: estDuration
+                duration: estDuration,
             });
         }));
 
