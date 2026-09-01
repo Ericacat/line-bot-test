@@ -1,10 +1,24 @@
 import { middleware, Client } from '@line/bot-sdk';
+import { getJyutpingText } from 'to-jyutping';
 
 const config = {
     channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
     channelSecret: process.env.LINE_CHANNEL_SECRET,
 };
 const client = new Client(config);
+
+// 廣東話文字 -> 粵拼；轉換失敗或無結果時回傳 null，呼叫端須自行 fallback
+function toJyutping(text) {
+    try {
+        const jyutping = getJyutpingText(text)?.trim();
+        // 完全無法辨識（例如純英數字/表情符號）時，to-jyutping 會回傳 "[…]"
+        if (!jyutping || jyutping === '[…]') return null;
+        return jyutping;
+    } catch (e) {
+        console.error('Jyutping conversion error', e);
+        return null;
+    }
+}
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') return res.status(200).send('OK');
@@ -29,11 +43,18 @@ export default async function handler(req, res) {
             // 粗估時長(毫秒)；太短會被 LINE 視為 0 秒
             const estDuration = Math.min(8000, Math.max(1200, text.length * 300));
 
-            await client.replyMessage(event.replyToken, {
+            const jyutping = toJyutping(text);
+            const textMessage = {
+                type: 'text',
+                text: jyutping ? `${text}\n粵拼：${jyutping}` : text,
+            };
+            const audioMessage = {
                 type: 'audio',
                 originalContentUrl: ttsUrl,
                 duration: estDuration,
-            });
+            };
+
+            await client.replyMessage(event.replyToken, [textMessage, audioMessage]);
         }));
 
         return res.status(200).json({ ok: true });
