@@ -1,6 +1,5 @@
 import { middleware, Client } from '@line/bot-sdk';
 import { getJyutpingText } from 'to-jyutping';
-import { jyutpingTextToBopomofo } from '../lib/jyutping-to-bopomofo.js';
 
 const config = {
     channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
@@ -45,23 +44,9 @@ export default async function handler(req, res) {
             const estDuration = Math.min(8000, Math.max(1200, text.length * 300));
 
             const jyutping = toJyutping(text);
-
-            let bopomofo = null;
-            if (jyutping) {
-                try {
-                    bopomofo = jyutpingTextToBopomofo(jyutping);
-                } catch (e) {
-                    console.error('Bopomofo conversion error', e);
-                }
-            }
-
-            const lines = [text];
-            if (jyutping) lines.push(`粵拼：${jyutping}`);
-            if (bopomofo) lines.push(`注音：${bopomofo}`);
-
             const textMessage = {
                 type: 'text',
-                text: lines.join('\n'),
+                text: jyutping ? `${text}\n粵拼：${jyutping}` : text,
             };
             const audioMessage = {
                 type: 'audio',
