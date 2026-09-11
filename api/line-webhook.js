@@ -7,13 +7,22 @@ const config = {
 };
 const client = new Client(config);
 
+// 聲調數字 -> 對應符號
+const TONE_MARKS = { 1: '¯', 2: '↗', 3: '→', 4: '↘', 5: '⤴', 6: '_' };
+
+// 在每個粵拼音節結尾的聲調數字(1~6)後面加上對應符號，數字本身保留、與符號間不留空格
+// 只比對「數字後面不是數字」的情況，避免誤動到非聲調用途的一般數字
+function addToneMarks(jyutping) {
+    return jyutping.replace(/([1-6])(?!\d)/g, (digit) => digit + TONE_MARKS[digit]);
+}
+
 // 廣東話文字 -> 粵拼；轉換失敗或無結果時回傳 null，呼叫端須自行 fallback
 function toJyutping(text) {
     try {
         const jyutping = getJyutpingText(text)?.trim();
         // 完全無法辨識（例如純英數字/表情符號）時，to-jyutping 會回傳 "[…]"
         if (!jyutping || jyutping === '[…]') return null;
-        return jyutping;
+        return addToneMarks(jyutping);
     } catch (e) {
         console.error('Jyutping conversion error', e);
         return null;
