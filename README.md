@@ -65,9 +65,9 @@ Webhook 通過 LINE 簽章及單次字元檢查後，產生有效 10 分鐘的�
 | `GOOGLE_CLOUD_PROJECT` | 可省略，預設服務帳戶的 `project_id` |
 | `TRANSLATION_ENABLED` | 翻譯準備好後設 `true` |
 | **`TRANSLATION_QUOTA_CONFIRMED`** | **新增**；確認實際專案的每日 NMT 配額已設為 1500 且生效後，才設 `true` |
-| `TTS_ENABLED` | 恢復語音設 `true`；手動停止設 `false`，變更後重新部署 |
-| **`PUBLIC_BASE_URL`** | **新增／恢復**；Vercel 正式 HTTPS 網址，例如 `https://your-bot.vercel.app`，不能有路徑或查詢參數 |
-| **`AUDIO_URL_SIGNING_SECRET`** | **新增／恢復**；隨機密鑰，至少 32 bytes，用於加密與驗證語音網址 |
+| `TTS_ENABLED` | 未設定時保留原本語音；`true` 啟用，`false` 停止，變更後重新部署 |
+| `PUBLIC_BASE_URL` | 可省略，正式環境優先使用 Vercel 自動提供的 `VERCEL_PROJECT_PRODUCTION_URL`，其次 `VERCEL_URL`；也可指定正式 HTTPS 網址，不含路徑或查詢參數 |
+| `AUDIO_URL_SIGNING_SECRET` | 可省略，使用既有 `LINE_CHANNEL_SECRET` 衍生獨立用途的加密密鑰；自行設定需至少 32 bytes，不能留空 |
 
 `TRANSLATION_QUOTA_CONFIRMED` 是操作者對控制台設定的確認，不會建立、提高、修改或讀取 Google 配額；設為 true 不能代替實際的雲端硬配額。配額沒設定、設在錯誤專案或之後被提高，都會失去所要求的每日 1500 字元上界，因此不要在這些情況確認啟用。
 

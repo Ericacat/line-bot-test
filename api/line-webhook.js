@@ -3,7 +3,7 @@ import { getJyutpingText } from 'to-jyutping';
 import { parseTranslation, translateText, TranslationError, TRANSLATION_HELP } from '../lib/translation.js';
 import { checkText, isFreshEvent, ProtectionError } from '../lib/cost-policy.js';
 import { createEventGuard } from '../lib/event-guard.js';
-import { createSpeech } from '../lib/speech.js';
+import { createSpeech, speechEnabled } from '../lib/speech.js';
 
 // Preserve the original bytes for LINE signature verification on Vercel.
 export const config = { api: { bodyParser: false } };
@@ -51,7 +51,7 @@ export function createWebhookHandler({ store, eventGuard = sharedEventGuard, rep
                 } else {
                     const jyutping = toJyutping(audioText);
                     messages = [{ type: 'text', text: jyutping ? `${replyText}\n粵拼：${jyutping}` : replyText }];
-                    if (process.env.TTS_ENABLED === 'true') {
+                    if (speechEnabled()) {
                         try {
                             messages.push(await speech(audioText, context, { store }));
                         } catch (error) {

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createSpeech, synthesizeSpeech } from '../lib/speech.js';
+import { createSpeech, synthesizeSpeech, speechEnabled, publicOrigin } from '../lib/speech.js';
 import { speechRequestToken, verifySpeechRequest } from '../lib/audio-token.js';
 import { createAudioHandler, createSpeechCache } from '../api/tts.js';
 Object.assign(process.env, { TTS_ENABLED: 'true', PUBLIC_BASE_URL: 'https://bot.example.com',
@@ -67,4 +67,34 @@ test('single-call limits, disable switch and cache overflow stop synthesis', asy
         await assert.rejects(synthesizeSpeech('你好', deps), { code: 'DISABLED' });
     } finally { process.env.TTS_ENABLED = 'true'; }
     assert.equal(calls, 0);
+});
+
+test('legacy configuration keeps speech enabled with Vercel URL and existing LINE secret', async () => {
+    const keys = ['TTS_ENABLED', 'PUBLIC_BASE_URL', 'AUDIO_URL_SIGNING_SECRET', 'LINE_CHANNEL_SECRET',
+        'VERCEL_URL', 'VERCEL_ENV', 'VERCEL_PROJECT_PRODUCTION_URL'];
+    const original = Object.fromEntries(keys.map(key => [key, process.env[key]]));
+    try {
+        delete process.env.TTS_ENABLED; delete process.env.PUBLIC_BASE_URL;
+        delete process.env.AUDIO_URL_SIGNING_SECRET;
+        process.env.LINE_CHANNEL_SECRET = 'existing-line-channel-secret';
+        process.env.VERCEL_URL = 'deployment.example.com';
+        process.env.VERCEL_ENV = 'production';
+        process.env.VERCEL_PROJECT_PRODUCTION_URL = 'production.example.com';
+        assert.equal(speechEnabled(), true);
+        assert.equal(publicOrigin(), 'https://production.example.com');
+        const audio = await createSpeech('你好', {});
+        const url = new URL(audio.originalContentUrl);
+        assert.equal(url.origin, 'https://production.example.com');
+        assert.equal(verifySpeechRequest(url.searchParams.get('token')).text, '你好');
+        delete process.env.VERCEL_PROJECT_PRODUCTION_URL;
+        assert.equal(publicOrigin(), 'https://deployment.example.com');
+        process.env.TTS_ENABLED = 'false'; assert.equal(speechEnabled(), false);
+        process.env.TTS_ENABLED = ''; assert.equal(speechEnabled(), false);
+        process.env.AUDIO_URL_SIGNING_SECRET = '';
+        assert.throws(() => speechRequestToken('你好'), { code: 'CONFIG' });
+    } finally {
+        for (const key of keys) {
+            if (original[key] === undefined) delete process.env[key]; else process.env[key] = original[key];
+        }
+    }
 });

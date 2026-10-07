@@ -101,3 +101,13 @@ test('event cache refuses overflow instead of evicting a fresh claim', () => {
     assert.throws(() => guard.claim(event('second', '你好')), { code: 'BUSY' });
     assert.equal(guard.claim(event('first', '你好')), null);
 });
+
+test('webhook retains original audio when TTS_ENABLED was never configured', async () => {
+    const original = process.env.TTS_ENABLED;
+    delete process.env.TTS_ENABLED;
+    try {
+        const h = setup();
+        await send(createWebhookHandler(h.deps), event('legacy-voice', '你好'));
+        assert.equal(h.replies[0][1].type, 'audio');
+    } finally { if (original === undefined) delete process.env.TTS_ENABLED; else process.env.TTS_ENABLED = original; }
+});

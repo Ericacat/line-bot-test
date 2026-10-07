@@ -1,6 +1,6 @@
 import { verifyAudioToken, verifySpeechRequest } from '../lib/audio-token.js';
 
-import { synthesizeSpeech } from '../lib/speech.js';
+import { synthesizeSpeech, speechEnabled } from '../lib/speech.js';
 
 // Best-effort cache: shares concurrent downloads within this instance, including failures.
 // It is not a durable counter or a cross-instance exactly-once guarantee.
@@ -23,7 +23,7 @@ export function createAudioHandler({ store, synthesize = synthesizeSpeech, speec
         res.setHeader('X-Content-Type-Options', 'nosniff');
         if (req.method !== 'GET') return res.status(405).send('Method Not Allowed');
         try {
-            if (process.env.TTS_ENABLED !== 'true') return res.status(403).send('Audio disabled');
+            if (!speechEnabled()) return res.status(403).send('Audio disabled');
             if (!store) {
                 const request = verifySpeechRequest(req.query?.token);
                 if (!request) return res.status(403).send('Invalid audio token');
