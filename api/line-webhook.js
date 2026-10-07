@@ -1,74 +1,90 @@
 import { middleware, Client } from '@line/bot-sdk';
 import { getJyutpingText } from 'to-jyutping';
+import { parseTranslation, translateText, TranslationError, TRANSLATION_HELP } from '../lib/translation.js';
+import { checkText, isFreshEvent, ProtectionError } from '../lib/cost-policy.js';
+import { createEventGuard } from '../lib/event-guard.js';
+import { createSpeech } from '../lib/speech.js';
 
-const config = {
-    channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
-    channelSecret: process.env.LINE_CHANNEL_SECRET,
-};
-const client = new Client(config);
-
-// 聲調數字 -> 對應符號
+// Preserve the original bytes for LINE signature verification on Vercel.
+export const config = { api: { bodyParser: false } };
 const TONE_MARKS = { 1: '¯', 2: '↗', 3: '→', 4: '↘', 5: '⤴', 6: '_' };
-
-// 在每個粵拼音節結尾的聲調數字(1~6)後面加上對應符號，數字本身保留、與符號間不留空格
-// 只比對「數字後面不是數字」的情況，避免誤動到非聲調用途的一般數字
-function addToneMarks(jyutping) {
-    return jyutping.replace(/([1-6])(?!\d)/g, (digit) => digit + TONE_MARKS[digit]);
-}
-
-// 廣東話文字 -> 粵拼；轉換失敗或無結果時回傳 null，呼叫端須自行 fallback
 function toJyutping(text) {
     try {
-        const jyutping = getJyutpingText(text)?.trim();
-        // 完全無法辨識（例如純英數字/表情符號）時，to-jyutping 會回傳 "[…]"
-        if (!jyutping || jyutping === '[…]') return null;
-        return addToneMarks(jyutping);
-    } catch (e) {
-        console.error('Jyutping conversion error', e);
-        return null;
-    }
+        const value = getJyutpingText(text)?.trim();
+        if (!value || value === '[…]') return null;
+        return value.replace(/([1-6])(?!\d)/g, (digit) => digit + TONE_MARKS[digit]);
+    } catch { return null; }
+}
+async function replyMessage(replyToken, messages) {
+    const client = new Client({ channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+        httpConfig: { timeout: 10000 } });
+    await client.replyMessage(replyToken, messages);
 }
 
-export default async function handler(req, res) {
-    if (req.method !== 'POST') return res.status(200).send('OK');
-
-    try {
-        const mdw = middleware(config);
-        await new Promise((resolve, reject) => mdw(req, res, (err) => (err ? reject(err) : resolve())));
-
-        const host = req.headers['x-forwarded-host'] || req.headers.host;
-        const baseUrl = `https://${host}`;
-
-        const events = req.body?.events || [];
-        await Promise.all(events.map(async (event) => {
-            if (event.type !== 'message' || event.message.type !== 'text') return;
-
+const sharedEventGuard = createEventGuard();
+export function createWebhookHandler({ store, eventGuard = sharedEventGuard, reply = replyMessage,
+    translate = translateText, speech = createSpeech } = {}) {
+    async function handleEvent(event) {
+        if (event.type !== 'message' || event.message?.type !== 'text' || typeof event.message.text !== 'string') return;
+        // No user whitelist; only signed LINE events can issue speech URLs.
+        if (!isFreshEvent(event)) return;
+        let context;
+        let messages;
+        try {
+            context = store ? await store.claim(event) : eventGuard.claim(event);
+            if (!context) return;
+            checkText(event.message.text);
             const text = event.message.text.trim();
-            if (!text) return;
-
-            // 產生 TTS 音檔網址（記得做 URL encode）
-            const ttsUrl = `${baseUrl}/api/tts?text=${encodeURIComponent(text)}`;
-
-            // 粗估時長(毫秒)；太短會被 LINE 視為 0 秒
-            const estDuration = Math.min(8000, Math.max(1200, text.length * 300));
-
-            const jyutping = toJyutping(text);
-            const textMessage = {
-                type: 'text',
-                text: jyutping ? `${text}\n粵拼：${jyutping}` : text,
-            };
-            const audioMessage = {
-                type: 'audio',
-                originalContentUrl: ttsUrl,
-                duration: estDuration,
-            };
-
-            await client.replyMessage(event.replyToken, [textMessage, audioMessage]);
-        }));
-
-        return res.status(200).json({ ok: true });
-    } catch (e) {
-        console.error('Webhook error', e);
-        return res.status(200).json({ ok: false });
+            if (text === '翻譯說明') {
+                messages = [{ type: 'text', text: TRANSLATION_HELP }];
+            } else {
+                const translation = parseTranslation(text);
+                let audioText = text;
+                let replyText = text;
+                if (translation) {
+                    const translated = await translate(translation, { context, store });
+                    replyText = `${translation.target === 'yue' ? '粵語' : '中文'}翻譯：${translated}`;
+                    audioText = translated;
+                }
+                if (translation?.target === 'zh-TW') {
+                    messages = [{ type: 'text', text: replyText }];
+                } else {
+                    const jyutping = toJyutping(audioText);
+                    messages = [{ type: 'text', text: jyutping ? `${replyText}\n粵拼：${jyutping}` : replyText }];
+                    if (process.env.TTS_ENABLED === 'true') {
+                        try {
+                            messages.push(await speech(audioText, context, { store }));
+                        } catch (error) {
+                            const reason = error instanceof ProtectionError ? error.message : '語音暫時無法使用，不會自動重試。';
+                            messages[0].text += `\n${reason}`;
+                            console.error('Speech stopped', error.code || 'SERVICE_ERROR');
+                        }
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Request stopped', error.code || 'SERVICE_ERROR');
+            messages = [{ type: 'text', text: error instanceof ProtectionError || error instanceof TranslationError
+                ? error.message : '服務暫時無法使用，不會自動重試。' }];
+        }
+        // Reply failure never restarts translation or synthesis.
+        try { await reply(event.replyToken, messages); }
+        catch { console.error('LINE reply failed'); }
     }
+    return async function handler(req, res) {
+        if (req.method !== 'POST') return res.status(200).send('OK');
+        try {
+            const verify = middleware({ channelSecret: process.env.LINE_CHANNEL_SECRET });
+            await new Promise((resolve, reject) => verify(req, res, (error) => error ? reject(error) : resolve()));
+        } catch {
+            return res.status(401).json({ ok: false });
+        }
+        // Sequential within a webhook; Google enforces the durable NMT daily quota.
+        for (const event of Array.isArray(req.body?.events) ? req.body.events : []) {
+            await handleEvent(event);
+        }
+        // Acknowledge handled failures to prevent webhook retry loops.
+        return res.status(200).json({ ok: true });
+    };
 }
+export default createWebhookHandler();
