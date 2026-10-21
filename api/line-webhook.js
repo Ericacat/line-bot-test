@@ -4,6 +4,7 @@ import { parseTranslation, translateText, TranslationError, TRANSLATION_HELP } f
 import { checkText, isFreshEvent, ProtectionError } from '../lib/cost-policy.js';
 import { createEventGuard } from '../lib/event-guard.js';
 import { createSpeech, speechEnabled } from '../lib/speech.js';
+import { parseExampleQuery, exampleReply } from '../lib/cantonese-examples.js';
 
 // Preserve the original bytes for LINE signature verification on Vercel.
 export const config = { api: { bodyParser: false } };
@@ -35,7 +36,10 @@ export function createWebhookHandler({ store, eventGuard = sharedEventGuard, rep
             if (!context) return;
             checkText(event.message.text);
             const text = event.message.text.trim();
-            if (text === '翻譯說明') {
+            const exampleQuery = parseExampleQuery(text);
+            if (exampleQuery !== null) {
+                messages = [{ type: 'text', text: exampleReply(exampleQuery) }];
+            } else if (text === '翻譯說明') {
                 messages = [{ type: 'text', text: TRANSLATION_HELP }];
             } else {
                 const translation = parseTranslation(text);

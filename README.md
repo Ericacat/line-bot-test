@@ -85,3 +85,9 @@ Webhook 通過 LINE 簽章及單次字元檢查後，產生有效 14 天的加�
 可能收費的項目仍包括 Google NMT 翻譯、Google Standard TTS、Vercel 執行／日誌／傳輸及 LINE 官方帳號付費方案；本次預設流程會產生 TTS 用量，不產生 Redis 用量。NMT 公告每月前 50 萬字元免費；保留的 Standard TTS 公告每月前 400 萬字元免費，超額分別標準價 US$20／US$4 每百萬字元。其他應用可能共享免費額度，不能保證整個帳單為零。[翻譯定價](https://cloud.google.com/products/translate/pricing)、[TTS 定價](https://cloud.google.com/text-to-speech/pricing)、[LINE 計費](https://developers.line.biz/en/docs/messaging-api/pricing/)。
 
 `npm test`：測試無儲存翻譯流程、配額確認閘門、Google 超額提示與不重試、太平洋日期切換、單次限制、重送與事件快取，以及無儲存語音網址、單次限制、下載快取與停用開關；也保留測試舊持久計數與音檔保護。Google／LINE 回應皆為模擬，Redis 是本機測試替身，實際執行 production Lua 腳本。不建立外部測試儲存，也不呼叫付費生成服務。尚未驗證你的 Google 控制台配額或實際 Vercel 部署。
+
+## 真人影片例句（試用）
+
+傳送 `例句：唔係`、`例句：佢`，機器人會從本機字幕索引回傳最多三句字幕及 YouTube 指定時間連結。支援全形或半形冒號；空白查詢顯示用法，查無資料會明確提示。這個指令不呼叫翻譯或 TTS，不需要新增環境變數、資料庫或 API key。其他文字維持原有流程。
+
+第一版收錄雞蛋妹 5 支影片、178 句含粵語口語字的候選字幕，偏科技主題，並未逐句聽音核對。字幕可能混合書面中文，因此只顯示實際字幕命中，不保證任意輸入都能找到，也不會自動把中文翻成粵語再猜影片。時間定位到字幕句，播放與可用地區依 YouTube 為準。資料來源、抽樣方式、更新方法見 [data/README.md](data/README.md)。

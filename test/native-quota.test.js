@@ -111,3 +111,19 @@ test('webhook retains original audio when TTS_ENABLED was never configured', asy
         assert.equal(h.replies[0][1].type, 'audio');
     } finally { if (original === undefined) delete process.env.TTS_ENABLED; else process.env.TTS_ENABLED = original; }
 });
+
+test('signed example queries return local timestamp links without translation or synthesis', async () => {
+    const h = setup();
+    let speechCalls = 0;
+    const handler = createWebhookHandler({ ...h.deps, speech: async () => { speechCalls++; } });
+    for (const [id, text] of [['example-found', '例句：唔係'], ['example-empty', '例句：'],
+        ['example-missing', '例句：不存在的字串測試']]) {
+        assert.equal((await send(handler, event(id, text))).code, 200);
+    }
+    assert.equal(h.requests.length, 0);
+    assert.equal(speechCalls, 0);
+    for (const reply of h.replies) assert.equal(reply.length, 1);
+    assert.match(h.replies[0][0].text, /youtube\.com\/watch\?v=.*&t=\d+s/);
+    assert.match(h.replies[1][0].text, /請輸入/);
+    assert.match(h.replies[2][0].text, /暫時找不到/);
+});
