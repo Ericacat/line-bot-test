@@ -61,9 +61,7 @@ export function createWebhookHandler({ store, eventGuard = sharedEventGuard, rep
                     const jyutping = toJyutping(audioText);
                     messages = [{ type: 'text', text: jyutping ? `${replyText}\n粵拼：${jyutping}` : replyText }];
                     const examples = searchExamples(audioText);
-                    if (examples.matches.length) {
-                        messages.push({ type: 'text', text: exampleReply(audioText, examples) });
-                    } else if (speechEnabled()) {
+                    if (speechEnabled()) {
                         try {
                             messages.push(await speech(audioText, context, { store }));
                         } catch (error) {
@@ -71,6 +69,9 @@ export function createWebhookHandler({ store, eventGuard = sharedEventGuard, rep
                             messages[0].text += `\n${reason}`;
                             console.error('Speech stopped', error.code || 'SERVICE_ERROR');
                         }
+                    }
+                    if (examples.matches.length) {
+                        messages.push({ type: 'text', text: exampleReply(audioText, examples) });
                     }
                 }
             }

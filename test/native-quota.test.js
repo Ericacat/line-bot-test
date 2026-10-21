@@ -112,7 +112,7 @@ test('webhook retains original audio when TTS_ENABLED was never configured', asy
     } finally { if (original === undefined) delete process.env.TTS_ENABLED; else process.env.TTS_ENABLED = original; }
 });
 
-test('plain text and example prefix both prefer videos and use speech only when no subtitle matches', async () => {
+test('plain text and example prefix both include speech plus any matching video examples', async () => {
     const h = setup();
     const spoken = [];
     const handler = createWebhookHandler({ ...h.deps, speech: async text => {
@@ -126,10 +126,11 @@ test('plain text and example prefix both prefer videos and use speech only when 
     }
     assert.deepEqual(h.replies[0], h.replies[1]);
     assert.match(h.replies[0][0].text, /^佢\n粵拼：/);
-    assert.match(h.replies[0][1].text, /youtube\.com\/watch\?v=.*&t=\d+s/);
+    assert.equal(h.replies[0][1].type, 'audio');
+    assert.match(h.replies[0][2].text, /youtube\.com\/watch\?v=.*&t=\d+s/);
     assert.deepEqual(h.replies[2], h.replies[3]);
     assert.equal(h.replies[2][1].type, 'audio');
-    assert.deepEqual(spoken, ['不存在的字串測試', '不存在的字串測試']);
+    assert.deepEqual(spoken, ['佢', '佢', '不存在的字串測試', '不存在的字串測試']);
     assert.match(h.replies[4][0].text, /請輸入/);
     assert.equal(h.requests.length, 0);
 });
@@ -148,19 +149,20 @@ test('travel learning commands reply with lessons without calling translation or
 });
 
 
-test('Cantonese translation results also prefer matching videos without synthesizing speech', async () => {
+test('Cantonese translation results include both speech and matching videos', async () => {
     const h = setup();
     let spoken = 0;
     let translated = 0;
     const handler = createWebhookHandler({ ...h.deps,
         translate: async () => { translated++; return '佢'; },
-        speech: async () => { spoken++; throw new Error('Unexpected synthesis'); } });
+        speech: async () => { spoken++; return { type: 'audio', originalContentUrl: 'https://bot.example.com/audio.mp3', duration: 1200 }; } });
     await send(handler, event('translated-video', '粵語：他'));
     assert.equal(translated, 1);
-    assert.equal(spoken, 0);
+    assert.equal(spoken, 1);
     assert.match(h.replies[0][0].text, /^粵語翻譯：佢/);
-    assert.match(h.replies[0][1].text, /youtube\.com/);
-    assert.ok(h.replies[0].every(message => message.type === 'text'));
+    assert.equal(h.replies[0][1].type, 'audio');
+    assert.match(h.replies[0][2].text, /youtube\.com/);
+    assert.equal(h.replies[0][1].type, 'audio');
 });
 
 
@@ -179,16 +181,25 @@ test('unified translation routes Mandarin to learning replies and Cantonese to C
     assert.match(h.replies[1][0].text, /^中文翻譯：/);
 });
 
-test('long requests use labeled related video examples before synthesis', async () => {
+test('long requests include both speech and labeled related video examples', async () => {
     const h = setup();
     let spoken = 0;
     const handler = createWebhookHandler({ ...h.deps,
-        speech: async () => { spoken++; throw new Error('Unexpected synthesis'); } });
+        speech: async () => { spoken++; return { type: 'audio', originalContentUrl: 'https://bot.example.com/audio.mp3', duration: 1200 }; } });
     await send(handler, event('related-video', '你可唔可以幫我買耳機'));
-    assert.equal(spoken, 0);
+    assert.equal(spoken, 1);
     assert.equal(h.requests.length, 0);
-    assert.match(h.replies[0][1].text, /相關例句（非完整原句）/);
-    assert.match(h.replies[0][1].text, /相關詞：耳機/);
+    assert.match(h.replies[0][2].text, /相關例句（非完整原句）/);
+    assert.match(h.replies[0][2].text, /相關詞：耳機/);
+    assert.equal(h.replies[0][1].type, 'audio');
+    assert.match(h.replies[0][2].text, /youtube\.com/);
+    assert.equal(h.replies[0][1].type, 'audio');
+});
+
+test('speech failure still preserves matching video examples', async () => {
+    const h = setup();
+    const handler = createWebhookHandler({ ...h.deps, speech: async () => { throw new Error('Speech unavailable'); } });
+    await send(handler, event('speech-failed-video-kept', '佢'));
+    assert.match(h.replies[0][0].text, /語音暫時無法使用/);
     assert.match(h.replies[0][1].text, /youtube\.com/);
-    assert.ok(h.replies[0].every(message => message.type === 'text'));
 });
