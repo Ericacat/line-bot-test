@@ -6,7 +6,7 @@ import { findExamples } from '../lib/cantonese-examples.js';
 
 test('travel menu lists categories and distinguishes available clips from pending ones', () => {
     assert.equal(travelLearningReply('我要呢個'), null);
-    assert.equal(travelLearningReply('粵語：旅居學習'), null);
+    assert.equal(travelLearningReply('旅居學習（中）'), null);
     const menu = travelLearningReply('旅居學習');
     for (const group of travelLearning.groups) assert.ok(menu.includes(group.name));
     const dining = travelLearningReply('旅居學習：點餐');

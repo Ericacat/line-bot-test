@@ -42,13 +42,13 @@ function setup() {
 
 test('default native flow translates both directions and retains Cantonese audio without storage', async () => {
     const h = setup(); const handler = createWebhookHandler(h.deps);
-    await send(handler, event('native-yue', '粵語：你吃飯了嗎？'));
+    await send(handler, event('native-yue', '你吃飯了嗎？（中）'));
     assert.equal(h.requests.length, 1);
     assert.match(h.requests[0].body.model, /\/models\/general\/nmt$/);
     assert.match(h.replies[0][0].text, /粵語翻譯：.*\n粵拼：/);
     assert.equal(h.replies[0][1].type, 'audio');
     assert.equal(h.replies[0].length, 2);
-    await send(handler, event('native-zh', '中文：你食咗飯未？'));
+    await send(handler, event('native-zh', '你食咗飯未？（粵）'));
     assert.equal(h.requests[1].body.targetLanguageCode, 'zh-TW');
     assert.equal(h.replies[1].length, 1);
     await send(handler, event('native-normal', '你好'));
@@ -59,28 +59,28 @@ test('default native flow translates both directions and retains Cantonese audio
 
 test('quota configuration must be confirmed before authentication or Google calls', async () => {
     let calls = 0;
-    await assert.rejects(translateText(parseTranslation('中文：你好'), { enabled: true, quotaConfirmed: false,
+    await assert.rejects(translateText(parseTranslation('你好（粵）'), { enabled: true, quotaConfirmed: false,
         getToken: async () => { calls++; }, fetchImpl: async () => { calls++; } }), { code: 'QUOTA_CONFIG' });
     assert.equal(calls, 0);
 });
 
 test('daily quota error is reported once and blocks subsequent local calls without retrying', async () => {
     const h = setup(); h.setStatus(403); const handler = createWebhookHandler(h.deps);
-    await send(handler, event('native-limit-first', '中文：你好'));
-    await send(handler, event('native-limit-next', '中文：你好'));
+    await send(handler, event('native-limit-first', '你好（粵）'));
+    await send(handler, event('native-limit-next', '你好（粵）'));
     assert.equal(h.requests.length, 1);
     for (const reply of h.replies) assert.match(reply[0].text, /今日翻譯額度已用完/);
 });
 
 test('duplicate/redelivered, stale, oversized and invalidly signed events cannot restart calls', async () => {
     const h = setup(); const handler = createWebhookHandler(h.deps);
-    const same = event('native-duplicate', '中文：你好');
+    const same = event('native-duplicate', '你好（粵）');
     await Promise.all(Array.from({ length: 5 }, () => send(handler, same)));
     await send(createWebhookHandler(h.deps), same);
-    await send(handler, event('native-redelivery', '中文：你好', { deliveryContext: { isRedelivery: true } }));
-    await send(handler, event('native-stale', '中文：你好', { timestamp: Date.now() - 11 * 60000 }));
+    await send(handler, event('native-redelivery', '你好（粵）', { deliveryContext: { isRedelivery: true } }));
+    await send(handler, event('native-stale', '你好（粵）', { timestamp: Date.now() - 11 * 60000 }));
     await send(handler, event('native-big', '😀'.repeat(301)));
-    assert.equal((await send(handler, event('native-bad-signature', '中文：你好'), false)).code, 401);
+    assert.equal((await send(handler, event('native-bad-signature', '你好（粵）'), false)).code, 401);
     assert.equal(h.requests.length, 1);
 });
 
@@ -156,7 +156,7 @@ test('Cantonese translation results include both speech and matching videos', as
     const handler = createWebhookHandler({ ...h.deps,
         translate: async () => { translated++; return '佢'; },
         speech: async () => { spoken++; return { type: 'audio', originalContentUrl: 'https://bot.example.com/audio.mp3', duration: 1200 }; } });
-    await send(handler, event('translated-video', '粵語：他'));
+    await send(handler, event('translated-video', '他（中）'));
     assert.equal(translated, 1);
     assert.equal(spoken, 1);
     assert.match(h.replies[0][0].text, /^粵語翻譯：佢/);
@@ -166,11 +166,11 @@ test('Cantonese translation results include both speech and matching videos', as
 });
 
 
-test('unified translation routes Mandarin to learning replies and Cantonese to Chinese-only replies', async () => {
+test('explicit translation targets route to Cantonese learning replies or Chinese-only replies', async () => {
     const h = setup();
     const handler = createWebhookHandler(h.deps);
-    await send(handler, event('auto-direction-yue', '翻譯：這個多少錢？'));
-    await send(handler, event('auto-direction-zh', '翻譯：你食咗飯未？'));
+    await send(handler, event('auto-direction-yue', '這個多少錢？（中）'));
+    await send(handler, event('auto-direction-zh', '你食咗飯未？（粵）'));
     assert.equal(h.requests.length, 2);
     assert.equal(h.requests[0].body.sourceLanguageCode, 'zh-TW');
     assert.equal(h.requests[0].body.targetLanguageCode, 'yue');
@@ -209,11 +209,37 @@ test('Cantonese food input with a colloquial eating verb translates to Chinese o
     const h = setup();
     let spoken = 0;
     const handler = createWebhookHandler({ ...h.deps, speech: async () => { spoken++; } });
-    await send(handler, event('food-auto-direction', '翻譯：我泥到香港一定要食蛋撻'));
+    await send(handler, event('food-auto-direction', '我泥到香港一定要食蛋撻（粵）'));
     assert.equal(h.requests[0].body.sourceLanguageCode, 'yue');
     assert.equal(h.requests[0].body.targetLanguageCode, 'zh-TW');
     assert.equal(h.requests[0].body.contents[0], '我泥到香港一定要食蛋撻');
     assert.match(h.replies[0][0].text, /^中文翻譯：/);
     assert.equal(h.replies[0].length, 1);
     assert.equal(spoken, 0);
+});
+
+
+test('unmarked text never translates and suffix markers are excluded from translation and speech', async () => {
+    const h = setup();
+    const spoken = [];
+    const handler = createWebhookHandler({ ...h.deps, speech: async text => {
+        spoken.push(text);
+        return { type: 'audio', originalContentUrl: 'https://bot.example.com/test.mp3', duration: 1200 };
+    } });
+    await send(handler, event('unmarked-text', '這個多少錢？'));
+    assert.equal(h.requests.length, 0);
+    assert.deepEqual(spoken, ['這個多少錢？']);
+    await send(handler, event('suffix-zh', '這個多少錢？(中)'));
+    assert.equal(h.requests[0].body.contents[0], '這個多少錢？');
+    assert.equal(h.requests[0].body.targetLanguageCode, 'yue');
+    assert.equal(spoken[1], '你食咗飯未？');
+    await send(handler, event('suffix-yue', '你食咗飯未？（粵）'));
+    assert.equal(h.requests[1].body.contents[0], '你食咗飯未？');
+    assert.equal(h.requests[1].body.targetLanguageCode, 'zh-TW');
+    assert.equal(h.replies[2].length, 1);
+    assert.match(h.replies[2][0].text, /^中文翻譯：/);
+    assert.equal(spoken.length, 2);
+    await send(handler, event('suffix-empty', '（中）'));
+    assert.equal(h.requests.length, 2);
+    assert.match(h.replies[3][0].text, /標記前輸入/);
 });

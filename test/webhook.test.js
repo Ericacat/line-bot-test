@@ -55,7 +55,7 @@ async function setup() {
 
 test('signed webhook performs both directions; audio downloads never synthesize again', async () => {
     const h = await setup();
-    await h.send(h.makeEvent('粵語：你吃飯了嗎？'));
+    await h.send(h.makeEvent('你吃飯了嗎？（中）'));
     const messages = h.replies.at(-1);
     assert.match(messages[0].text, /^粵語翻譯：你食咗飯未？\n粵拼：/);
     const url = new URL(messages[1].originalContentUrl);
@@ -68,7 +68,7 @@ test('signed webhook performs both directions; audio downloads never synthesize 
         assert.equal(res.code, 200); assert.equal(res.body.toString(), 'test-mp3');
     }
     assert.equal(h.paid.length, 2);
-    await h.send(h.makeEvent('中文：你食咗飯未？'));
+    await h.send(h.makeEvent('你食咗飯未？（粵）'));
     assert.deepEqual(h.replies.at(-1), [{ type: 'text', text: '中文翻譯：你吃飯了嗎？' }]);
     await h.send(h.makeEvent('你好'));
     assert.match(h.replies.at(-1)[0].text, /^你好\n粵拼：/);
@@ -88,7 +88,7 @@ test('bad signatures, stale IDs and oversized input never call paid APIs', async
 });
 
 test('concurrent duplicate webhooks and a new handler synthesize only once', async () => {
-    const h = await setup(); const event = h.makeEvent('粵語：你好');
+    const h = await setup(); const event = h.makeEvent('你好（中）');
     await Promise.all(Array.from({ length: 8 }, () => h.send(event)));
     await h.send({ ...event, deliveryContext: { isRedelivery: true } }, createWebhookHandler(h.deps));
     assert.equal(h.paid.length, 2); assert.equal(h.replies.length, 1);
@@ -96,18 +96,18 @@ test('concurrent duplicate webhooks and a new handler synthesize only once', asy
 
 test('storage failures before claims and reservations block paid API calls', async () => {
     const h = await setup(); h.server.fail = true;
-    assert.equal((await h.send(h.makeEvent('粵語：你好'))).code, 200);
+    assert.equal((await h.send(h.makeEvent('你好（中）'))).code, 200);
     assert.equal(h.paid.length, 0); assert.match(h.replies.at(-1)[0].text, /用量記錄/);
     h.server.fail = false;
     const brokenStore = { ...h.store, reserve: async () => { throw new Error('Uncertain counter'); } };
-    await h.send(h.makeEvent('粵語：你好'), createWebhookHandler({ ...h.deps, store: brokenStore }));
+    await h.send(h.makeEvent('你好（中）'), createWebhookHandler({ ...h.deps, store: brokenStore }));
     await h.send(h.makeEvent('你好'), createWebhookHandler({ ...h.deps, store: brokenStore }));
     assert.equal(h.paid.length, 0);
 });
 
 test('API and reply failures consume reserved amounts and never retry on redelivery', async () => {
     const h = await setup(); h.setTranslationStatus(429);
-    const translation = h.makeEvent('粵語：你好'); await h.send(translation); await h.send(translation);
+    const translation = h.makeEvent('你好（中）'); await h.send(translation); await h.send(translation);
     assert.equal(h.paid.length, 1); assert.equal(h.server.get(LEDGER_KEY).value.translation, '2');
     h.setSpeechStatus(500); const speech = h.makeEvent('你好'); await h.send(speech); await h.send(speech);
     assert.equal(h.paid.length, 2); assert.equal(h.server.get(LEDGER_KEY).value.tts, '2');
@@ -117,7 +117,7 @@ test('API and reply failures consume reserved amounts and never retry on redeliv
 
 test('oversized translation output is not synthesized; audio access expires', async () => {
     const h = await setup(); h.setResult('字'.repeat(301));
-    await h.send(h.makeEvent('粵語：你好')); assert.equal(h.paid.length, 1);
+    await h.send(h.makeEvent('你好（中）')); assert.equal(h.paid.length, 1);
     assert.equal(h.replies.at(-1).length, 1); assert.match(h.replies.at(-1)[0].text, /300/);
     await h.send(h.makeEvent('你好'));
     const token = new URL(h.replies.at(-1)[1].originalContentUrl).searchParams.get('token');
@@ -133,7 +133,7 @@ test('disabled feature switches cannot trigger paid API calls', async () => {
     const h = await setup();
     process.env.TRANSLATION_ENABLED = 'false'; process.env.TTS_ENABLED = 'false';
     try {
-        await h.send(h.makeEvent('粵語：你好')); await h.send(h.makeEvent('你好'));
+        await h.send(h.makeEvent('你好（中）')); await h.send(h.makeEvent('你好'));
         assert.equal(h.paid.length, 0);
         const res = response(); await createAudioHandler({ store: h.store })({ method: 'GET', query: { text: '你好' } }, res);
         assert.equal(res.code, 403);
@@ -154,15 +154,15 @@ test('translation cap is shared across users and redeployed handlers at exactly 
     const h = await setup();
     for (let i = 0; i < 5; i++) {
         const store = createCostStore({ url: 'https://redis.example.com', token: 'test', fetchImpl: h.server.fetch });
-        await h.send(h.makeEvent(`中文：${'字'.repeat(297)}`, { source: { userId: `U${String(i).repeat(32)}` } }),
+        await h.send(h.makeEvent(`${'字'.repeat(297)}（粵）`, { source: { userId: `U${String(i).repeat(32)}` } }),
             createWebhookHandler({ ...h.deps, store }));
     }
-    await h.send(h.makeEvent(`中文：${'字'.repeat(15)}`));
+    await h.send(h.makeEvent(`${'字'.repeat(15)}（粵）`));
     assert.equal(h.paid.length, 6);
     assert.equal(h.server.get(LEDGER_KEY).value.translation, '1500');
     const redeployed = createWebhookHandler({ ...h.deps,
         store: createCostStore({ url: 'https://redis.example.com', token: 'test', fetchImpl: h.server.fetch }) });
-    await h.send(h.makeEvent('中文：字', { source: { userId: `U${'f'.repeat(32)}` } }), redeployed);
+    await h.send(h.makeEvent('字（粵）', { source: { userId: `U${'f'.repeat(32)}` } }), redeployed);
     assert.equal(h.paid.length, 6);
     assert.match(h.replies.at(-1)[0].text, /翻譯已達 1,500/);
     // Translation exhaustion does not spend or block the separate speech quota.
@@ -185,7 +185,7 @@ test('speech cap is shared across users and redeployed handlers; reaching it nev
     assert.ok(h.replies.at(-1).every(message => message.type === 'text'));
     assert.match(h.replies.at(-1)[0].text, /語音已達 1,500/);
     // The independent translation quota remains usable.
-    await h.send(h.makeEvent('中文：你好'));
+    await h.send(h.makeEvent('你好（粵）'));
     assert.equal(h.paid.length, 6);
     assert.equal(h.server.get(LEDGER_KEY).value.translation, '2');
 });
