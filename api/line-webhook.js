@@ -4,7 +4,7 @@ import { parseTranslation, translateText, TranslationError, TRANSLATION_HELP } f
 import { checkText, isFreshEvent, ProtectionError } from '../lib/cost-policy.js';
 import { createEventGuard } from '../lib/event-guard.js';
 import { createSpeech, speechEnabled } from '../lib/speech.js';
-import { parseExampleQuery, exampleReply } from '../lib/cantonese-examples.js';
+import { parseExampleQuery, exampleReply, findExamples } from '../lib/cantonese-examples.js';
 
 // Preserve the original bytes for LINE signature verification on Vercel.
 export const config = { api: { bodyParser: false } };
@@ -63,6 +63,9 @@ export function createWebhookHandler({ store, eventGuard = sharedEventGuard, rep
                             messages[0].text += `\n${reason}`;
                             console.error('Speech stopped', error.code || 'SERVICE_ERROR');
                         }
+                    }
+                    if (findExamples(audioText).length) {
+                        messages.push({ type: 'text', text: exampleReply(audioText) });
                     }
                 }
             }

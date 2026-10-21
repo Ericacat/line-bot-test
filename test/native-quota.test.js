@@ -127,3 +127,15 @@ test('signed example queries return local timestamp links without translation or
     assert.match(h.replies[1][0].text, /請輸入/);
     assert.match(h.replies[2][0].text, /暫時找不到/);
 });
+
+
+test('ordinary Cantonese text automatically includes video links alongside speech', async () => {
+    const h = setup();
+    const handler = createWebhookHandler(h.deps);
+    await send(handler, event('automatic-example', '佢'));
+    const messages = h.replies[0];
+    assert.match(messages[0].text, /^佢\n粵拼：/);
+    assert.equal(messages[1].type, 'audio');
+    assert.match(messages[2].text, /youtube\.com\/watch\?v=.*&t=\d+s/);
+    assert.equal(h.requests.length, 0);
+});
