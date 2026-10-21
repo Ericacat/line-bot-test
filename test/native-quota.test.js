@@ -112,31 +112,25 @@ test('webhook retains original audio when TTS_ENABLED was never configured', asy
     } finally { if (original === undefined) delete process.env.TTS_ENABLED; else process.env.TTS_ENABLED = original; }
 });
 
-test('signed example queries return local timestamp links without translation or synthesis', async () => {
+test('plain text and example prefix both prefer videos and use speech only when no subtitle matches', async () => {
     const h = setup();
-    let speechCalls = 0;
-    const handler = createWebhookHandler({ ...h.deps, speech: async () => { speechCalls++; } });
-    for (const [id, text] of [['example-found', '例句：唔係'], ['example-empty', '例句：'],
-        ['example-missing', '例句：不存在的字串測試']]) {
+    const spoken = [];
+    const handler = createWebhookHandler({ ...h.deps, speech: async text => {
+        spoken.push(text);
+        return { type: 'audio', originalContentUrl: 'https://bot.example.com/audio.mp3', duration: 1200 };
+    } });
+    for (const [id, text] of [['plain-video', '佢'], ['prefix-video', '例句：佢'],
+        ['plain-missing', '不存在的字串測試'], ['prefix-missing', '例句：不存在的字串測試'],
+        ['prefix-empty', '例句：']]) {
         assert.equal((await send(handler, event(id, text))).code, 200);
     }
-    assert.equal(h.requests.length, 0);
-    assert.equal(speechCalls, 0);
-    for (const reply of h.replies) assert.equal(reply.length, 1);
-    assert.match(h.replies[0][0].text, /youtube\.com\/watch\?v=.*&t=\d+s/);
-    assert.match(h.replies[1][0].text, /請輸入/);
-    assert.match(h.replies[2][0].text, /暫時找不到/);
-});
-
-
-test('ordinary Cantonese text automatically includes video links alongside speech', async () => {
-    const h = setup();
-    const handler = createWebhookHandler(h.deps);
-    await send(handler, event('automatic-example', '佢'));
-    const messages = h.replies[0];
-    assert.match(messages[0].text, /^佢\n粵拼：/);
-    assert.equal(messages[1].type, 'audio');
-    assert.match(messages[2].text, /youtube\.com\/watch\?v=.*&t=\d+s/);
+    assert.deepEqual(h.replies[0], h.replies[1]);
+    assert.match(h.replies[0][0].text, /^佢\n粵拼：/);
+    assert.match(h.replies[0][1].text, /youtube\.com\/watch\?v=.*&t=\d+s/);
+    assert.deepEqual(h.replies[2], h.replies[3]);
+    assert.equal(h.replies[2][1].type, 'audio');
+    assert.deepEqual(spoken, ['不存在的字串測試', '不存在的字串測試']);
+    assert.match(h.replies[4][0].text, /請輸入/);
     assert.equal(h.requests.length, 0);
 });
 
@@ -151,4 +145,36 @@ test('travel learning commands reply with lessons without calling translation or
     assert.equal(h.replies[0].length, 1);
     assert.equal(h.requests.length, 0);
     assert.equal(speechCalls, 0);
+});
+
+
+test('Cantonese translation results also prefer matching videos without synthesizing speech', async () => {
+    const h = setup();
+    let spoken = 0;
+    let translated = 0;
+    const handler = createWebhookHandler({ ...h.deps,
+        translate: async () => { translated++; return '佢'; },
+        speech: async () => { spoken++; throw new Error('Unexpected synthesis'); } });
+    await send(handler, event('translated-video', '粵語：他'));
+    assert.equal(translated, 1);
+    assert.equal(spoken, 0);
+    assert.match(h.replies[0][0].text, /^粵語翻譯：佢/);
+    assert.match(h.replies[0][1].text, /youtube\.com/);
+    assert.ok(h.replies[0].every(message => message.type === 'text'));
+});
+
+
+test('unified translation routes Mandarin to learning replies and Cantonese to Chinese-only replies', async () => {
+    const h = setup();
+    const handler = createWebhookHandler(h.deps);
+    await send(handler, event('auto-direction-yue', '翻譯：這個多少錢？'));
+    await send(handler, event('auto-direction-zh', '翻譯：你食咗飯未？'));
+    assert.equal(h.requests.length, 2);
+    assert.equal(h.requests[0].body.sourceLanguageCode, 'zh-TW');
+    assert.equal(h.requests[0].body.targetLanguageCode, 'yue');
+    assert.match(h.replies[0][0].text, /^粵語翻譯：.*\n粵拼：/);
+    assert.equal(h.requests[1].body.sourceLanguageCode, 'yue');
+    assert.equal(h.requests[1].body.targetLanguageCode, 'zh-TW');
+    assert.equal(h.replies[1].length, 1);
+    assert.match(h.replies[1][0].text, /^中文翻譯：/);
 });

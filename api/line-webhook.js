@@ -42,14 +42,14 @@ export function createWebhookHandler({ store, eventGuard = sharedEventGuard, rep
             const learningReply = travelLearningReply(text);
             if (learningReply !== null) {
                 messages = [{ type: 'text', text: learningReply }];
-            } else if (exampleQuery !== null) {
-                messages = [{ type: 'text', text: exampleReply(exampleQuery) }];
+            } else if (exampleQuery !== null && !exampleQuery) {
+                messages = [{ type: 'text', text: exampleReply('') }];
             } else if (text === '翻譯說明') {
                 messages = [{ type: 'text', text: TRANSLATION_HELP }];
             } else {
-                const translation = parseTranslation(text);
-                let audioText = text;
-                let replyText = text;
+                const translation = exampleQuery === null ? parseTranslation(text) : null;
+                let audioText = exampleQuery ?? text;
+                let replyText = audioText;
                 if (translation) {
                     const translated = await translate(translation, { context, store });
                     replyText = `${translation.target === 'yue' ? '粵語' : '中文'}翻譯：${translated}`;
@@ -60,7 +60,9 @@ export function createWebhookHandler({ store, eventGuard = sharedEventGuard, rep
                 } else {
                     const jyutping = toJyutping(audioText);
                     messages = [{ type: 'text', text: jyutping ? `${replyText}\n粵拼：${jyutping}` : replyText }];
-                    if (speechEnabled()) {
+                    if (findExamples(audioText).length) {
+                        messages.push({ type: 'text', text: exampleReply(audioText) });
+                    } else if (speechEnabled()) {
                         try {
                             messages.push(await speech(audioText, context, { store }));
                         } catch (error) {
@@ -68,9 +70,6 @@ export function createWebhookHandler({ store, eventGuard = sharedEventGuard, rep
                             messages[0].text += `\n${reason}`;
                             console.error('Speech stopped', error.code || 'SERVICE_ERROR');
                         }
-                    }
-                    if (findExamples(audioText).length) {
-                        messages.push({ type: 'text', text: exampleReply(audioText) });
                     }
                 }
             }

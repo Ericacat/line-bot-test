@@ -28,7 +28,7 @@ test('disabled, empty and oversized input never contact Google', async () => {
     let calls = 0;
     const fetchImpl = async () => { calls++; throw new Error('Unexpected network'); };
     await assert.rejects(translateText(parseTranslation('粵語：你好'), { ...options, enabled: false, fetchImpl }), { code: 'DISABLED' });
-    await assert.rejects(translateText(parseTranslation('粵語：'), { ...options, fetchImpl }), { code: 'EMPTY' });
+    await assert.rejects(translateText(parseTranslation('翻譯：'), { ...options, fetchImpl }), { code: 'EMPTY' });
     await assert.rejects(translateText(parseTranslation(`粵語：${'😀'.repeat(301)}`), { ...options, fetchImpl }), { code: 'TOO_LONG' });
     assert.equal(calls, 0);
 });
@@ -53,4 +53,21 @@ test('300 Unicode code points accepted and API errors never retry', async () => 
         }), (error) => error.code === code);
         assert.equal(calls, 1);
     }
+});
+
+
+test('unified translation infers Cantonese cues, defaults shared phrases to Cantonese and honors overrides', () => {
+    for (const input of ['翻譯：這個多少錢？', '翻譯: 你好', '翻譯：我們的關係很好', '翻譯：食物很好吃']) {
+        const request = parseTranslation(input);
+        assert.equal(request.source, 'zh-TW');
+        assert.equal(request.target, 'yue');
+    }
+    for (const input of ['翻譯：你食咗飯未？', '翻譯: 佢喺邊度', '翻譯：幾多錢', '翻譯：你食飯未', '翻譯：係']) {
+        assert.equal(parseTranslation(input).source, 'yue');
+        assert.equal(parseTranslation(input).target, 'zh-TW');
+    }
+    assert.equal(parseTranslation('粵語：你食咗飯未？').target, 'yue');
+    assert.equal(parseTranslation('中文：你好').target, 'zh-TW');
+    assert.equal(parseTranslation('翻譯這個多少錢'), null);
+    assert.equal(parseTranslation('翻譯：').text, '');
 });
