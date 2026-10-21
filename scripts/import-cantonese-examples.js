@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const COLLOQUIAL = /[唔佢嘅咗喺啲哋嗰咁冇乜嘢嚟]/u;
+const TRAVEL_CAPTION = /唔該|多謝|餐牌|堂食|外賣|辣|甜|熱|凍|少少|食|飲|水|飯|肉|魚|蝦|幾錢|現金|八達通|廁所|酒店|搭車|落車|巴士|港鐵|肚餓|好食/u;
 export function subtitleSeconds(value) {
     if (typeof value !== 'string' || !/^\d{2,}:\d{2}:\d{2}(?:[.,]\d+)?$/.test(value)) return NaN;
     const [h, m, s] = value.replace(',', '.').split(':').map(Number);
@@ -27,17 +28,24 @@ export function buildExampleIndex(documents, catalog) {
     const seen = new Set();
     for (const document of documents) {
         for (const item of document.rows ?? []) {
-            const row = item?.row?.json;
+            const raw = item?.row;
+            const captionRow = raw && typeof raw.caption === 'string' && !raw.json;
+            const row = captionRow ? { video_id: raw.video_id, channel_id: raw.uploader_id,
+                segments: [{ text: raw.caption, start_time: raw.start, end_time: raw.end }] } : raw?.json;
             const video = allowed.get(row?.video_id);
+            if (captionRow && video?.source !== 'youtube-caption-yue') continue;
+            if (!captionRow && video?.source === 'youtube-caption-yue') continue;
             if (!video || row.channel_id !== video.config || !/^[\w-]{11}$/.test(row.video_id)) continue;
             for (const segment of Array.isArray(row.segments) ? row.segments : []) {
                 if (typeof segment?.text !== 'string') continue;
                 const text = segment.text.trim();
                 // Candidate filter only: colloquial characters do not prove verbatim accuracy.
-                if (!COLLOQUIAL.test(text) || [...text].length > 180) continue;
-                const start = subtitleSeconds(segment.start_time);
-                const end = subtitleSeconds(segment.end_time);
+                if ([...text].length > 180) continue;
+                if (captionRow ? !TRAVEL_CAPTION.test(text) : !COLLOQUIAL.test(text)) continue;
+                const start = captionRow ? segment.start_time : subtitleSeconds(segment.start_time);
+                const end = captionRow ? segment.end_time : subtitleSeconds(segment.end_time);
                 if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start) continue;
+                if (captionRow && end - start > 30) continue;
                 if (Number.isFinite(row.full_duration) && end > row.full_duration) continue;
                 const key = `${row.video_id}:${start}:${text}`;
                 if (seen.has(key)) continue;

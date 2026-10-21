@@ -1,0 +1,768 @@
+{
+  "metric": "literal-subtitle-match-not-audio-verification",
+  "total": 85,
+  "matched": 50,
+  "missing": [
+    "你好",
+    "早晨",
+    "唔該",
+    "對唔住",
+    "嗰度",
+    "邊度",
+    "幾多錢",
+    "呢個係乜嘢",
+    "呢個幾多錢",
+    "我要",
+    "我要呢個",
+    "我唔要",
+    "餐牌",
+    "有冇餐牌",
+    "堂食",
+    "外賣",
+    "唔要辣",
+    "唔要糖",
+    "少甜",
+    "少冰",
+    "走冰",
+    "埋單",
+    "凍",
+    "好辣",
+    "少少辣",
+    "辣唔辣",
+    "牛肉",
+    "雞肉",
+    "豬肉",
+    "蝦",
+    "廁所喺邊度",
+    "呢度點去",
+    "落車",
+    "有冇Wi-Fi",
+    "七"
+  ],
+  "groups": [
+    {
+      "name": "問候與禮貌",
+      "items": [
+        {
+          "text": "你好",
+          "meaning": "你好",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "早晨",
+          "meaning": "早安",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "唔該",
+          "meaning": "謝謝（請人幫忙或服務時）、勞駕",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "多謝",
+          "meaning": "謝謝（收禮或受惠時）",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=104s",
+            "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=1344s"
+          ]
+        },
+        {
+          "text": "唔好意思",
+          "meaning": "不好意思",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=QlvKBvtn_jU&t=221s",
+            "https://www.youtube.com/watch?v=0Jk_bbkSA3g&t=430s"
+          ]
+        },
+        {
+          "text": "對唔住",
+          "meaning": "對不起",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "再見",
+          "meaning": "再見",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=jLBeLMZlVsU&t=617s",
+            "https://www.youtube.com/watch?v=jDMxeToplgU&t=372s",
+            "https://www.youtube.com/watch?v=-OU-fQ_MN6g&t=414s"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "指人與位置",
+      "items": [
+        {
+          "text": "我",
+          "meaning": "我",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=17s",
+            "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=164s",
+            "https://www.youtube.com/watch?v=mweeZcWQzHQ&t=44s"
+          ]
+        },
+        {
+          "text": "你",
+          "meaning": "你",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=163s",
+            "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=103s",
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=98s"
+          ]
+        },
+        {
+          "text": "佢",
+          "meaning": "他／她",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=fKEaj3fHLcE&t=450s",
+            "https://www.youtube.com/watch?v=ZwJZK9ykdB8&t=138s",
+            "https://www.youtube.com/watch?v=rz8m6Q32Mr0&t=274s"
+          ]
+        },
+        {
+          "text": "我哋",
+          "meaning": "我們",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=373s",
+            "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=65s",
+            "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=600s"
+          ]
+        },
+        {
+          "text": "呢個",
+          "meaning": "這個",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=278s",
+            "https://www.youtube.com/watch?v=rz8m6Q32Mr0&t=81s",
+            "https://www.youtube.com/watch?v=R7fTvnUnwvY&t=271s"
+          ]
+        },
+        {
+          "text": "嗰個",
+          "meaning": "那個",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=1005s",
+            "https://www.youtube.com/watch?v=jDMxeToplgU&t=86s",
+            "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=260s"
+          ]
+        },
+        {
+          "text": "呢度",
+          "meaning": "這裡",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=jLBeLMZlVsU&t=528s"
+          ]
+        },
+        {
+          "text": "嗰度",
+          "meaning": "那裡",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "邊度",
+          "meaning": "哪裡",
+          "matched": false,
+          "exampleUrls": []
+        }
+      ]
+    },
+    {
+      "name": "問句與句型",
+      "items": [
+        {
+          "text": "乜嘢",
+          "meaning": "什麼",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=52s",
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=400s",
+            "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=50s"
+          ]
+        },
+        {
+          "text": "幾多錢",
+          "meaning": "多少錢",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "呢個係乜嘢",
+          "meaning": "這是什麼",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "呢個幾多錢",
+          "meaning": "這個多少錢",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "有冇",
+          "meaning": "有沒有＿＿",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=R7fTvnUnwvY&t=398s",
+            "https://www.youtube.com/watch?v=t0HwTTFwew4&t=263s",
+            "https://www.youtube.com/watch?v=t0HwTTFwew4&t=230s"
+          ]
+        },
+        {
+          "text": "係咪",
+          "meaning": "是不是＿＿",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=0BnGur1xtAo&t=457s",
+            "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=414s",
+            "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=373s"
+          ]
+        },
+        {
+          "text": "係",
+          "meaning": "是",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=89s",
+            "https://www.youtube.com/watch?v=0BnGur1xtAo&t=456s",
+            "https://www.youtube.com/watch?v=fKEaj3fHLcE&t=507s"
+          ]
+        },
+        {
+          "text": "唔係",
+          "meaning": "不是",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=159s",
+            "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=409s",
+            "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=994s"
+          ]
+        },
+        {
+          "text": "有",
+          "meaning": "有",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=89s",
+            "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=191s",
+            "https://www.youtube.com/watch?v=R7fTvnUnwvY&t=398s"
+          ]
+        },
+        {
+          "text": "冇",
+          "meaning": "沒有",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=-OU-fQ_MN6g&t=150s",
+            "https://www.youtube.com/watch?v=rz8m6Q32Mr0&t=274s",
+            "https://www.youtube.com/watch?v=R7fTvnUnwvY&t=398s"
+          ]
+        },
+        {
+          "text": "我要",
+          "meaning": "我要＿＿",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "我要呢個",
+          "meaning": "我要這個",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "我唔要",
+          "meaning": "我不要＿＿",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "可唔可以",
+          "meaning": "可不可以＿＿",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=fKEaj3fHLcE&t=430s",
+            "https://www.youtube.com/watch?v=uotdjtgj-w8&t=49s",
+            "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=367s"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "點餐",
+      "items": [
+        {
+          "text": "餐牌",
+          "meaning": "菜單",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "有冇餐牌",
+          "meaning": "有沒有菜單",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "堂食",
+          "meaning": "內用",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "外賣",
+          "meaning": "外帶",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "唔要辣",
+          "meaning": "不要辣",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "唔要糖",
+          "meaning": "不要糖",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "少甜",
+          "meaning": "少甜",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "少冰",
+          "meaning": "少冰",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "走冰",
+          "meaning": "去冰",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "埋單",
+          "meaning": "結帳",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "食",
+          "meaning": "吃",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=0Gazuh6sLfU&t=1290s",
+            "https://www.youtube.com/watch?v=cP6Zr2AAryY&t=523s",
+            "https://www.youtube.com/watch?v=Igv-jaze65s&t=1153s"
+          ]
+        },
+        {
+          "text": "飲",
+          "meaning": "喝",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=hcLvBh9WHkI&t=708s"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "味道與程度",
+      "items": [
+        {
+          "text": "辣",
+          "meaning": "辣",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=ZwJZK9ykdB8&t=409s"
+          ]
+        },
+        {
+          "text": "甜",
+          "meaning": "甜",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=273s"
+          ]
+        },
+        {
+          "text": "熱",
+          "meaning": "熱",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=M8iTuq1yVZQ&t=199s",
+            "https://www.youtube.com/watch?v=cci6x_8P6XQ&t=15s",
+            "https://www.youtube.com/watch?v=0BnGur1xtAo&t=322s"
+          ]
+        },
+        {
+          "text": "凍",
+          "meaning": "冰／冷",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "好辣",
+          "meaning": "很辣",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "少少",
+          "meaning": "一點點",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=79s",
+            "https://www.youtube.com/watch?v=ZwJZK9ykdB8&t=273s",
+            "https://www.youtube.com/watch?v=cci6x_8P6XQ&t=419s"
+          ]
+        },
+        {
+          "text": "少少辣",
+          "meaning": "一點點辣",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "辣唔辣",
+          "meaning": "辣不辣",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "好食",
+          "meaning": "好吃",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=cP6Zr2AAryY&t=523s"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "食物與購物",
+      "items": [
+        {
+          "text": "水",
+          "meaning": "水",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=KVUGmzVh9tQ&t=355s",
+            "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=99s",
+            "https://www.youtube.com/watch?v=fKEaj3fHLcE&t=323s"
+          ]
+        },
+        {
+          "text": "飯",
+          "meaning": "飯",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=433s",
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=235s",
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=414s"
+          ]
+        },
+        {
+          "text": "牛肉",
+          "meaning": "牛肉",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "雞肉",
+          "meaning": "雞肉",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "豬肉",
+          "meaning": "豬肉",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "魚",
+          "meaning": "魚",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=1056s"
+          ]
+        },
+        {
+          "text": "蝦",
+          "meaning": "蝦",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "買",
+          "meaning": "買",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=163s",
+            "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=171s",
+            "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=463s"
+          ]
+        },
+        {
+          "text": "幾錢",
+          "meaning": "多少錢（口語簡說）",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=994s",
+            "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=499s"
+          ]
+        },
+        {
+          "text": "現金",
+          "meaning": "現金",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=443s",
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=122s",
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=144s"
+          ]
+        },
+        {
+          "text": "八達通",
+          "meaning": "八達通卡",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=323s",
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=16s",
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=337s"
+          ]
+        },
+        {
+          "text": "袋",
+          "meaning": "袋子",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=ZwJZK9ykdB8&t=380s",
+            "https://www.youtube.com/watch?v=uotdjtgj-w8&t=106s",
+            "https://www.youtube.com/watch?v=rz8m6Q32Mr0&t=117s"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "問路與住宿",
+      "items": [
+        {
+          "text": "廁所",
+          "meaning": "廁所",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=mOsCFeqZHGI&t=1899s"
+          ]
+        },
+        {
+          "text": "廁所喺邊度",
+          "meaning": "廁所在哪裡",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "去",
+          "meaning": "去",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=177s",
+            "https://www.youtube.com/watch?v=dvYoK7-7y9k&t=264s",
+            "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=319s"
+          ]
+        },
+        {
+          "text": "呢度點去",
+          "meaning": "這裡怎麼去",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "港鐵",
+          "meaning": "港鐵",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=0BnGur1xtAo&t=182s"
+          ]
+        },
+        {
+          "text": "巴士",
+          "meaning": "公車",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=cci6x_8P6XQ&t=253s"
+          ]
+        },
+        {
+          "text": "落車",
+          "meaning": "下車",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "酒店",
+          "meaning": "飯店",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=cci6x_8P6XQ&t=616s"
+          ]
+        },
+        {
+          "text": "有冇Wi-Fi",
+          "meaning": "有沒有 Wi-Fi",
+          "matched": false,
+          "exampleUrls": []
+        }
+      ]
+    },
+    {
+      "name": "數字",
+      "items": [
+        {
+          "text": "一",
+          "meaning": "一",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=345s",
+            "https://www.youtube.com/watch?v=uotdjtgj-w8&t=362s",
+            "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=1002s"
+          ]
+        },
+        {
+          "text": "二",
+          "meaning": "二",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=466LT31Qf0Q&t=954s",
+            "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=315s",
+            "https://www.youtube.com/watch?v=cci6x_8P6XQ&t=100s"
+          ]
+        },
+        {
+          "text": "三",
+          "meaning": "三",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=R7fTvnUnwvY&t=380s",
+            "https://www.youtube.com/watch?v=-8dIAF_-7Gk&t=3s",
+            "https://www.youtube.com/watch?v=fKEaj3fHLcE&t=345s"
+          ]
+        },
+        {
+          "text": "四",
+          "meaning": "四",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=281s",
+            "https://www.youtube.com/watch?v=rz8m6Q32Mr0&t=218s",
+            "https://www.youtube.com/watch?v=GRWhlU9Agbg&t=395s"
+          ]
+        },
+        {
+          "text": "五",
+          "meaning": "五",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=298s",
+            "https://www.youtube.com/watch?v=9tJYUpruajg&t=351s",
+            "https://www.youtube.com/watch?v=GRWhlU9Agbg&t=371s"
+          ]
+        },
+        {
+          "text": "六",
+          "meaning": "六",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=298s",
+            "https://www.youtube.com/watch?v=5BiI-wt1KgY&t=1069s"
+          ]
+        },
+        {
+          "text": "七",
+          "meaning": "七",
+          "matched": false,
+          "exampleUrls": []
+        },
+        {
+          "text": "八",
+          "meaning": "八",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=323s",
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=16s",
+            "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=337s"
+          ]
+        },
+        {
+          "text": "九",
+          "meaning": "九",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=KVUGmzVh9tQ&t=24s",
+            "https://www.youtube.com/watch?v=0BnGur1xtAo&t=326s"
+          ]
+        },
+        {
+          "text": "十",
+          "meaning": "十",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=5BiI-wt1KgY&t=1069s",
+            "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=379s"
+          ]
+        },
+        {
+          "text": "百",
+          "meaning": "百",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=rz8m6Q32Mr0&t=293s",
+            "https://www.youtube.com/watch?v=cci6x_8P6XQ&t=22s",
+            "https://www.youtube.com/watch?v=cci6x_8P6XQ&t=326s"
+          ]
+        },
+        {
+          "text": "千",
+          "meaning": "千",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=1002s",
+            "https://www.youtube.com/watch?v=cci6x_8P6XQ&t=22s",
+            "https://www.youtube.com/watch?v=KVUGmzVh9tQ&t=257s"
+          ]
+        },
+        {
+          "text": "兩個",
+          "meaning": "兩個",
+          "matched": true,
+          "exampleUrls": [
+            "https://www.youtube.com/watch?v=466LT31Qf0Q&t=3175s",
+            "https://www.youtube.com/watch?v=jDMxeToplgU&t=280s",
+            "https://www.youtube.com/watch?v=dvYoK7-7y9k&t=579s"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -139,3 +139,16 @@ test('ordinary Cantonese text automatically includes video links alongside speec
     assert.match(messages[2].text, /youtube\.com\/watch\?v=.*&t=\d+s/);
     assert.equal(h.requests.length, 0);
 });
+
+test('travel learning commands reply with lessons without calling translation or speech', async () => {
+    const h = setup();
+    let speechCalls = 0;
+    const handler = createWebhookHandler({ ...h.deps, speech: async () => { speechCalls++; } });
+    await send(handler, event('travel-menu', '旅居學習'));
+    await send(handler, event('travel-dining', '旅居學習：點餐'));
+    assert.match(h.replies[0][0].text, /旅居粵語學習/);
+    assert.match(h.replies[1][0].text, /堂食｜內用/);
+    assert.equal(h.replies[0].length, 1);
+    assert.equal(h.requests.length, 0);
+    assert.equal(speechCalls, 0);
+});

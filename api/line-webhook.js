@@ -6,6 +6,8 @@ import { createEventGuard } from '../lib/event-guard.js';
 import { createSpeech, speechEnabled } from '../lib/speech.js';
 import { parseExampleQuery, exampleReply, findExamples } from '../lib/cantonese-examples.js';
 
+import { travelLearningReply } from '../lib/travel-learning.js';
+
 // Preserve the original bytes for LINE signature verification on Vercel.
 export const config = { api: { bodyParser: false } };
 const TONE_MARKS = { 1: '¯', 2: '↗', 3: '→', 4: '↘', 5: '⤴', 6: '_' };
@@ -37,7 +39,10 @@ export function createWebhookHandler({ store, eventGuard = sharedEventGuard, rep
             checkText(event.message.text);
             const text = event.message.text.trim();
             const exampleQuery = parseExampleQuery(text);
-            if (exampleQuery !== null) {
+            const learningReply = travelLearningReply(text);
+            if (learningReply !== null) {
+                messages = [{ type: 'text', text: learningReply }];
+            } else if (exampleQuery !== null) {
                 messages = [{ type: 'text', text: exampleReply(exampleQuery) }];
             } else if (text === '翻譯說明') {
                 messages = [{ type: 'text', text: TRANSLATION_HELP }];

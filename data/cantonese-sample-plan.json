@@ -317,6 +317,24 @@
       "datasetRevisions": [
         "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
       ]
+    },
+    {
+      "fileName": "bot-travel-caption-first.json",
+      "url": "https://datasets-server.huggingface.co/first-rows?dataset=ming030890%2Fyoutube_caption_yue&config=default&split=train",
+      "rows": 100,
+      "sha256": "a5de70fcceba91d9730e27fa7fa7c50c0cd78572874a56ebc769bdf97ee65e5d",
+      "datasetRevisions": []
+    },
+    {
+      "fileName": "bot-travel-caption-test.json",
+      "url": "https://datasets-server.huggingface.co/first-rows?dataset=ming030890%2Fyoutube_caption_yue&config=default&split=test",
+      "rows": 100,
+      "sha256": "739ff285b8b49e2a1b56e96bcd5536246d8e40ca540b72db6536f74c8df6c4c3",
+      "datasetRevisions": []
     }
+  ],
+  "sources": [
+    "https://huggingface.co/datasets/OrcinusOrca/YouTube-Cantonese",
+    "https://huggingface.co/datasets/ming030890/youtube_caption_yue"
   ]
 }

@@ -1,0 +1,385 @@
+{
+  "description": "旅居入門粵語學習清單；詞義與教學句型不是影片逐字引文，影片是否命中另行計算。",
+  "groups": [
+    {
+      "name": "問候與禮貌",
+      "items": [
+        {
+          "text": "你好",
+          "meaning": "你好"
+        },
+        {
+          "text": "早晨",
+          "meaning": "早安"
+        },
+        {
+          "text": "唔該",
+          "meaning": "謝謝（請人幫忙或服務時）、勞駕"
+        },
+        {
+          "text": "多謝",
+          "meaning": "謝謝（收禮或受惠時）"
+        },
+        {
+          "text": "唔好意思",
+          "meaning": "不好意思"
+        },
+        {
+          "text": "對唔住",
+          "meaning": "對不起"
+        },
+        {
+          "text": "再見",
+          "meaning": "再見"
+        }
+      ]
+    },
+    {
+      "name": "指人與位置",
+      "items": [
+        {
+          "text": "我",
+          "meaning": "我"
+        },
+        {
+          "text": "你",
+          "meaning": "你"
+        },
+        {
+          "text": "佢",
+          "meaning": "他／她"
+        },
+        {
+          "text": "我哋",
+          "meaning": "我們"
+        },
+        {
+          "text": "呢個",
+          "meaning": "這個"
+        },
+        {
+          "text": "嗰個",
+          "meaning": "那個"
+        },
+        {
+          "text": "呢度",
+          "meaning": "這裡"
+        },
+        {
+          "text": "嗰度",
+          "meaning": "那裡"
+        },
+        {
+          "text": "邊度",
+          "meaning": "哪裡"
+        }
+      ]
+    },
+    {
+      "name": "問句與句型",
+      "items": [
+        {
+          "text": "乜嘢",
+          "meaning": "什麼"
+        },
+        {
+          "text": "幾多錢",
+          "meaning": "多少錢"
+        },
+        {
+          "text": "呢個係乜嘢",
+          "meaning": "這是什麼"
+        },
+        {
+          "text": "呢個幾多錢",
+          "meaning": "這個多少錢"
+        },
+        {
+          "text": "有冇",
+          "meaning": "有沒有＿＿"
+        },
+        {
+          "text": "係咪",
+          "meaning": "是不是＿＿"
+        },
+        {
+          "text": "係",
+          "meaning": "是"
+        },
+        {
+          "text": "唔係",
+          "meaning": "不是"
+        },
+        {
+          "text": "有",
+          "meaning": "有"
+        },
+        {
+          "text": "冇",
+          "meaning": "沒有"
+        },
+        {
+          "text": "我要",
+          "meaning": "我要＿＿"
+        },
+        {
+          "text": "我要呢個",
+          "meaning": "我要這個"
+        },
+        {
+          "text": "我唔要",
+          "meaning": "我不要＿＿"
+        },
+        {
+          "text": "可唔可以",
+          "meaning": "可不可以＿＿"
+        }
+      ]
+    },
+    {
+      "name": "點餐",
+      "items": [
+        {
+          "text": "餐牌",
+          "meaning": "菜單"
+        },
+        {
+          "text": "有冇餐牌",
+          "meaning": "有沒有菜單"
+        },
+        {
+          "text": "堂食",
+          "meaning": "內用"
+        },
+        {
+          "text": "外賣",
+          "meaning": "外帶"
+        },
+        {
+          "text": "唔要辣",
+          "meaning": "不要辣"
+        },
+        {
+          "text": "唔要糖",
+          "meaning": "不要糖"
+        },
+        {
+          "text": "少甜",
+          "meaning": "少甜"
+        },
+        {
+          "text": "少冰",
+          "meaning": "少冰"
+        },
+        {
+          "text": "走冰",
+          "meaning": "去冰"
+        },
+        {
+          "text": "埋單",
+          "meaning": "結帳"
+        },
+        {
+          "text": "食",
+          "meaning": "吃"
+        },
+        {
+          "text": "飲",
+          "meaning": "喝"
+        }
+      ]
+    },
+    {
+      "name": "味道與程度",
+      "items": [
+        {
+          "text": "辣",
+          "meaning": "辣"
+        },
+        {
+          "text": "甜",
+          "meaning": "甜"
+        },
+        {
+          "text": "熱",
+          "meaning": "熱"
+        },
+        {
+          "text": "凍",
+          "meaning": "冰／冷"
+        },
+        {
+          "text": "好辣",
+          "meaning": "很辣"
+        },
+        {
+          "text": "少少",
+          "meaning": "一點點"
+        },
+        {
+          "text": "少少辣",
+          "meaning": "一點點辣"
+        },
+        {
+          "text": "辣唔辣",
+          "meaning": "辣不辣"
+        },
+        {
+          "text": "好食",
+          "meaning": "好吃"
+        }
+      ]
+    },
+    {
+      "name": "食物與購物",
+      "items": [
+        {
+          "text": "水",
+          "meaning": "水"
+        },
+        {
+          "text": "飯",
+          "meaning": "飯"
+        },
+        {
+          "text": "牛肉",
+          "meaning": "牛肉"
+        },
+        {
+          "text": "雞肉",
+          "meaning": "雞肉"
+        },
+        {
+          "text": "豬肉",
+          "meaning": "豬肉"
+        },
+        {
+          "text": "魚",
+          "meaning": "魚"
+        },
+        {
+          "text": "蝦",
+          "meaning": "蝦"
+        },
+        {
+          "text": "買",
+          "meaning": "買"
+        },
+        {
+          "text": "幾錢",
+          "meaning": "多少錢（口語簡說）"
+        },
+        {
+          "text": "現金",
+          "meaning": "現金"
+        },
+        {
+          "text": "八達通",
+          "meaning": "八達通卡"
+        },
+        {
+          "text": "袋",
+          "meaning": "袋子"
+        }
+      ]
+    },
+    {
+      "name": "問路與住宿",
+      "items": [
+        {
+          "text": "廁所",
+          "meaning": "廁所"
+        },
+        {
+          "text": "廁所喺邊度",
+          "meaning": "廁所在哪裡"
+        },
+        {
+          "text": "去",
+          "meaning": "去"
+        },
+        {
+          "text": "呢度點去",
+          "meaning": "這裡怎麼去"
+        },
+        {
+          "text": "港鐵",
+          "meaning": "港鐵"
+        },
+        {
+          "text": "巴士",
+          "meaning": "公車"
+        },
+        {
+          "text": "落車",
+          "meaning": "下車"
+        },
+        {
+          "text": "酒店",
+          "meaning": "飯店"
+        },
+        {
+          "text": "有冇Wi-Fi",
+          "meaning": "有沒有 Wi-Fi"
+        }
+      ]
+    },
+    {
+      "name": "數字",
+      "items": [
+        {
+          "text": "一",
+          "meaning": "一"
+        },
+        {
+          "text": "二",
+          "meaning": "二"
+        },
+        {
+          "text": "三",
+          "meaning": "三"
+        },
+        {
+          "text": "四",
+          "meaning": "四"
+        },
+        {
+          "text": "五",
+          "meaning": "五"
+        },
+        {
+          "text": "六",
+          "meaning": "六"
+        },
+        {
+          "text": "七",
+          "meaning": "七"
+        },
+        {
+          "text": "八",
+          "meaning": "八"
+        },
+        {
+          "text": "九",
+          "meaning": "九"
+        },
+        {
+          "text": "十",
+          "meaning": "十"
+        },
+        {
+          "text": "百",
+          "meaning": "百"
+        },
+        {
+          "text": "千",
+          "meaning": "千"
+        },
+        {
+          "text": "兩個",
+          "meaning": "兩個"
+        }
+      ]
+    }
+  ]
+}

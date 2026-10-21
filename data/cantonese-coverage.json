@@ -1,9 +1,9 @@
 {
   "metric": "literal-subtitle-match-not-audio-verification",
-  "videos": 46,
-  "subtitles": 2223,
+  "videos": 56,
+  "subtitles": 2233,
   "total": 100,
-  "matched": 67,
+  "matched": 68,
   "missing": [
     "嗰度",
     "邊度",
@@ -18,7 +18,6 @@
     "口渴",
     "早餐",
     "午餐",
-    "好食",
     "好飲",
     "畀錢",
     "埋單",
@@ -377,8 +376,10 @@
       },
       {
         "term": "好食",
-        "matched": false,
-        "exampleUrls": []
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=cP6Zr2AAryY&t=523s"
+        ]
       },
       {
         "term": "好飲",

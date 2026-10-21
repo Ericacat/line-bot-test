@@ -1,6 +1,7 @@
 {
   "sources": {
-    "youtube-cantonese": "https://huggingface.co/datasets/OrcinusOrca/YouTube-Cantonese"
+    "youtube-cantonese": "https://huggingface.co/datasets/OrcinusOrca/YouTube-Cantonese",
+    "youtube-caption-yue": "https://huggingface.co/datasets/ming030890/youtube_caption_yue"
   },
   "checkedOn": "2026-10-21",
   "review": "subtitle-candidates-not-audio-verified",
@@ -2182,6 +2183,15 @@
       "start": 514.531,
       "end": 516.885,
       "text": "我哋好快再見 bye bye"
+    },
+    {
+      "videoId": "0Gazuh6sLfU",
+      "title": "【4移居馬來西亞🇲🇾】突發！突然被Jeff哥帶上山！原來是要去榴槤園？一次過試4種不同品種的榴槤！這種榴槤叫叔叔？還有牛奶味的？你試過沒有？｜夫妻廢片",
+      "channel": "夫妻廢片",
+      "source": "youtube-caption-yue",
+      "start": 1290.433,
+      "end": 1291.633,
+      "text": "實有榴蓮食"
     },
     {
       "videoId": "0Jk_bbkSA3g",
@@ -6927,6 +6937,15 @@
       "text": "我哋好快再見 bye bye"
     },
     {
+      "videoId": "cP6Zr2AAryY",
+      "title": "【36移居馬來西亞🇲🇾】沒有看過這樣的市集😨第一次去齋戒月市集！ 沒想到那麼多美食！挑戰用RM 50能吃飽嗎？#移居馬來西亞 #齋戒月 #馬來西亞 #ramadhan #bazaar",
+      "channel": "夫妻廢片",
+      "source": "youtube-caption-yue",
+      "start": 523.5,
+      "end": 524.933,
+      "text": "好似好好食咯"
+    },
+    {
       "videoId": "cXd4dcmmy98",
       "title": "電子書好用嗎？Rakuten Kobo Sage 電子閱讀器評測📔電子書、實體書、平板電腦分別｜購買必看貼士",
       "channel": "Maviskuku 雞蛋妹",
@@ -6952,6 +6971,15 @@
       "start": 311.022,
       "end": 314.093,
       "text": "配件方面除咗觸控筆之外"
+    },
+    {
+      "videoId": "D2QQU8YmjYA",
+      "title": "【94🇲🇾】馬來西亞麥當勞🍔Party 馬幣200包場！香港人難以置信 有漢堡神偷 playhouse 檳城榴連季來了 Lotus’s 買日用品？ #移居馬來西亞 #檳城 #檳城生活 #馬來西亞",
+      "channel": "夫妻廢片",
+      "source": "youtube-caption-yue",
+      "start": 684.733,
+      "end": 686.133,
+      "text": "我哋請你食麥當勞"
     },
     {
       "videoId": "dvYoK7-7y9k",
@@ -9400,6 +9428,15 @@
       "start": 472.496,
       "end": 474.781,
       "text": "有咩問題都可以喺下面留言啦"
+    },
+    {
+      "videoId": "hcLvBh9WHkI",
+      "title": "【50🇲🇾】馬來西亞醫療落後？我們竟然一個星期去了兩次醫院？帶大家逛馬來西亞超市？檳城物價怎樣？終於跟豚長初次見面了！ #移居馬來西亞 #馬來西亞醫院 #檳城 #馬來西亞物價",
+      "channel": "夫妻廢片",
+      "source": "youtube-caption-yue",
+      "start": 708.666,
+      "end": 711.7,
+      "text": "即係可能呢便啲人好中意飲呢便嘅奶茶嘅"
     },
     {
       "videoId": "HDIvDq6Y4NY",
@@ -11859,6 +11896,15 @@
       "text": "咁我哋好快再見 bye bye"
     },
     {
+      "videoId": "Igv-jaze65s",
+      "title": "【62🇲🇾】帶父母旅居吉隆坡🇲🇾被大馬人的熱情感動了｜跟當地人一樣ICC pudu 食早餐｜愛上NSK 超級市場 #移居馬來西亞 #吉隆坡 #iccpudu #nsk #吉隆坡美食",
+      "channel": "夫妻廢片",
+      "source": "youtube-caption-yue",
+      "start": 1153.266,
+      "end": 1154.1,
+      "text": "我食唔食得啊"
+    },
+    {
       "videoId": "jDMxeToplgU",
       "title": "【優惠】Jabra 優惠大曬冷！Jabra PanaCast 50、Evolve2 65 貼耳式耳機、 Evolve2 85 全罩式耳機、Speak 750 開箱！",
       "channel": "Maviskuku 雞蛋妹",
@@ -14271,6 +14317,24 @@
       "text": "又或者有啲到有一些人會自己加工"
     },
     {
+      "videoId": "M8iTuq1yVZQ",
+      "title": "【花田實測】一試就知焗爐掂唔掂 附廣東話字幕 Ep159",
+      "channel": "McFatty 麥花田",
+      "source": "youtube-caption-yue",
+      "start": 199.264,
+      "end": 200.135,
+      "text": "會唔會熱啲呢?"
+    },
+    {
+      "videoId": "mOsCFeqZHGI",
+      "title": "【90🇲🇾】開箱檳城的風水屋？！搬入去立即懷孕？移居馬來西亞🇲🇾消費降級？由4800尺搬去2400尺  #馬來西亞房價 #家庭生活 #檳城生活 #風水屋 #馬來西亞移居 #夫妻廢片",
+      "channel": "夫妻廢片",
+      "source": "youtube-caption-yue",
+      "start": 1899.333,
+      "end": 1901.233,
+      "text": "呢個廁所都係有窗嘅"
+    },
+    {
       "videoId": "mweeZcWQzHQ",
       "title": "螢幕可以當電視用？超多用途！Samsung 4K 智能顯示器 M7 開箱評測",
       "channel": "Maviskuku 雞蛋妹",
@@ -14757,6 +14821,15 @@
       "text": "之後都可以去睇睇我嘅社交平台"
     },
     {
+      "videoId": "Oz07L3LHfcw",
+      "title": "【26移居馬來西亞🇲🇾】每天只開5小時？這間檳城米芝蓮餐廳真的有這麼好吃嗎？｜夫妻廢片 #michelle #檳城美食 #美時香餐室",
+      "channel": "夫妻廢片",
+      "source": "youtube-caption-yue",
+      "start": 87.133,
+      "end": 89.033,
+      "text": "人生除咗食仲有咩做啊"
+    },
+    {
       "videoId": "p5vuAt99ZjM",
       "title": "Apple M1 Max MacBook Pro 一個月用後感！iMac 對比｜剪片效能、電量、跑分",
       "channel": "Maviskuku 雞蛋妹",
@@ -14773,6 +14846,15 @@
       "start": 221.199,
       "end": 222.159,
       "text": "“唔好意思，我想問下“"
+    },
+    {
+      "videoId": "qUkfyVRzmSg",
+      "title": "【56🇲🇾】終於要選月子中心｜￼跟香港相差五倍價錢？酒店式五星級服務只要RM 1xxxx 包￼一日五餐 Baby Spa 孕婦按摩 Facial 醫生照顧 #￼馬來西亞生仔 #月子中心",
+      "channel": "夫妻廢片",
+      "source": "youtube-caption-yue",
+      "start": 560.933,
+      "end": 564.733,
+      "text": "我们不单只是讲说注重你的饮食"
     },
     {
       "videoId": "R7fTvnUnwvY",
@@ -19336,6 +19418,15 @@
       "start": 522,
       "end": 525,
       "text": "我哋好快再見 bye bye"
+    },
+    {
+      "videoId": "YRsKJ3Ko5EY",
+      "title": "菠蘿咕嚕肉 點先外脆內軟又掛汁？ 附廣東話字幕 Ep35",
+      "channel": "McFatty 麥花田",
+      "source": "youtube-caption-yue",
+      "start": 135.035,
+      "end": 138.005,
+      "text": "因為炸第一次嗰啲咕嚕肉熟啫"
     },
     {
       "videoId": "zkMod4ULtNk",

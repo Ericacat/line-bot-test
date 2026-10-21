@@ -35,3 +35,16 @@ test('SRT import supports comma milliseconds, CRLF, BOM and multi-line captions'
     assert.equal(index.entries[0].start, 1.25);
     assert.equal(index.entries[0].end, 3.5);
 });
+
+test('numeric caption timestamps use original seconds and the original caption, not ASR rewriting', () => {
+    const verified = { ...catalog, videos: [{ ...catalog.videos[0], source: 'youtube-caption-yue', config: '@food' }] };
+    const row = { video_id: 'aaaaaaaaaaa', uploader_id: '@food', caption: '好似好好食咯',
+        start: 523.5, end: 525.5, sensevoice_caption: 'wrong text' };
+    const docs = [{ rows: [{ row }, { row: { ...row, uploader_id: '@wrong' } },
+        { row: { ...row, start: '523.5' } }, { row: { ...row, end: 600 } },
+        { row: { ...row, caption: '非旅居主題' } }] }];
+    const result = buildExampleIndex(docs, verified);
+    assert.equal(result.entries.length, 1);
+    assert.equal(result.entries[0].text, '好似好好食咯');
+    assert.equal(result.entries[0].start, 523.5);
+});

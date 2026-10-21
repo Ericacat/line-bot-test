@@ -2,7 +2,8 @@
   "checkedOn": "2026-10-21",
   "verification": "YouTube oEmbed metadata only; subtitle timing and spoken wording not manually verified",
   "sources": {
-    "youtube-cantonese": "https://huggingface.co/datasets/OrcinusOrca/YouTube-Cantonese"
+    "youtube-cantonese": "https://huggingface.co/datasets/OrcinusOrca/YouTube-Cantonese",
+    "youtube-caption-yue": "https://huggingface.co/datasets/ming030890/youtube_caption_yue"
   },
   "videos": [
     {
@@ -114,6 +115,18 @@
       "colloquialLines": 92
     },
     {
+      "videoId": "0Gazuh6sLfU",
+      "config": "@MikiandRaymond",
+      "source": "youtube-caption-yue",
+      "title": "【4移居馬來西亞🇲🇾】突發！突然被Jeff哥帶上山！原來是要去榴槤園？一次過試4種不同品種的榴槤！這種榴槤叫叔叔？還有牛奶味的？你試過沒有？｜夫妻廢片",
+      "channel": "夫妻廢片",
+      "channelUrl": "https://www.youtube.com/@MikiandRaymond",
+      "checkedOn": "2026-10-21",
+      "availability": "oembed-available",
+      "subtitleLines": 1,
+      "selection": "food-and-travel-caption-sample"
+    },
+    {
       "videoId": "0Jk_bbkSA3g",
       "config": "pinkytalks",
       "source": "youtube-cantonese",
@@ -210,6 +223,18 @@
       "colloquialLines": 92
     },
     {
+      "videoId": "D2QQU8YmjYA",
+      "config": "@MikiandRaymond",
+      "source": "youtube-caption-yue",
+      "title": "【94🇲🇾】馬來西亞麥當勞🍔Party 馬幣200包場！香港人難以置信 有漢堡神偷 playhouse 檳城榴連季來了 Lotus’s 買日用品？ #移居馬來西亞 #檳城 #檳城生活 #馬來西亞",
+      "channel": "夫妻廢片",
+      "channelUrl": "https://www.youtube.com/@MikiandRaymond",
+      "checkedOn": "2026-10-21",
+      "availability": "oembed-available",
+      "subtitleLines": 1,
+      "selection": "food-and-travel-caption-sample"
+    },
+    {
       "videoId": "GRWhlU9Agbg",
       "config": "maviskuku",
       "source": "youtube-cantonese",
@@ -244,6 +269,18 @@
       "availability": "oembed-available",
       "subtitleLines": 356,
       "colloquialLines": 271
+    },
+    {
+      "videoId": "Igv-jaze65s",
+      "config": "@MikiandRaymond",
+      "source": "youtube-caption-yue",
+      "title": "【62🇲🇾】帶父母旅居吉隆坡🇲🇾被大馬人的熱情感動了｜跟當地人一樣ICC pudu 食早餐｜愛上NSK 超級市場 #移居馬來西亞 #吉隆坡 #iccpudu #nsk #吉隆坡美食",
+      "channel": "夫妻廢片",
+      "channelUrl": "https://www.youtube.com/@MikiandRaymond",
+      "checkedOn": "2026-10-21",
+      "availability": "oembed-available",
+      "subtitleLines": 1,
+      "selection": "food-and-travel-caption-sample"
     },
     {
       "videoId": "JQEoZuL0VGE",
@@ -292,6 +329,30 @@
       "availability": "oembed-available",
       "subtitleLines": 157,
       "colloquialLines": 1
+    },
+    {
+      "videoId": "M8iTuq1yVZQ",
+      "config": "@McFattyHK",
+      "source": "youtube-caption-yue",
+      "title": "【花田實測】一試就知焗爐掂唔掂 附廣東話字幕 Ep159",
+      "channel": "McFatty 麥花田",
+      "channelUrl": "https://www.youtube.com/@McFattyHK",
+      "checkedOn": "2026-10-21",
+      "availability": "oembed-available",
+      "subtitleLines": 1,
+      "selection": "food-and-travel-caption-sample"
+    },
+    {
+      "videoId": "Oz07L3LHfcw",
+      "config": "@MikiandRaymond",
+      "source": "youtube-caption-yue",
+      "title": "【26移居馬來西亞🇲🇾】每天只開5小時？這間檳城米芝蓮餐廳真的有這麼好吃嗎？｜夫妻廢片 #michelle #檳城美食 #美時香餐室",
+      "channel": "夫妻廢片",
+      "channelUrl": "https://www.youtube.com/@MikiandRaymond",
+      "checkedOn": "2026-10-21",
+      "availability": "oembed-available",
+      "subtitleLines": 1,
+      "selection": "food-and-travel-caption-sample"
     },
     {
       "videoId": "QlvKBvtn_jU",
@@ -354,6 +415,18 @@
       "colloquialLines": 155
     },
     {
+      "videoId": "YRsKJ3Ko5EY",
+      "config": "@McFattyHK",
+      "source": "youtube-caption-yue",
+      "title": "菠蘿咕嚕肉 點先外脆內軟又掛汁？ 附廣東話字幕 Ep35",
+      "channel": "McFatty 麥花田",
+      "channelUrl": "https://www.youtube.com/@McFattyHK",
+      "checkedOn": "2026-10-21",
+      "availability": "oembed-available",
+      "subtitleLines": 1,
+      "selection": "food-and-travel-caption-sample"
+    },
+    {
       "videoId": "ZwJZK9ykdB8",
       "config": "maviskuku",
       "source": "youtube-cantonese",
@@ -388,6 +461,18 @@
       "availability": "oembed-available",
       "subtitleLines": 154,
       "colloquialLines": 1
+    },
+    {
+      "videoId": "cP6Zr2AAryY",
+      "config": "@MikiandRaymond",
+      "source": "youtube-caption-yue",
+      "title": "【36移居馬來西亞🇲🇾】沒有看過這樣的市集😨第一次去齋戒月市集！ 沒想到那麼多美食！挑戰用RM 50能吃飽嗎？#移居馬來西亞 #齋戒月 #馬來西亞 #ramadhan #bazaar",
+      "channel": "夫妻廢片",
+      "channelUrl": "https://www.youtube.com/@MikiandRaymond",
+      "checkedOn": "2026-10-21",
+      "availability": "oembed-available",
+      "subtitleLines": 1,
+      "selection": "food-and-travel-caption-sample"
     },
     {
       "videoId": "cXd4dcmmy98",
@@ -438,6 +523,18 @@
       "colloquialLines": 72
     },
     {
+      "videoId": "hcLvBh9WHkI",
+      "config": "@MikiandRaymond",
+      "source": "youtube-caption-yue",
+      "title": "【50🇲🇾】馬來西亞醫療落後？我們竟然一個星期去了兩次醫院？帶大家逛馬來西亞超市？檳城物價怎樣？終於跟豚長初次見面了！ #移居馬來西亞 #馬來西亞醫院 #檳城 #馬來西亞物價",
+      "channel": "夫妻廢片",
+      "channelUrl": "https://www.youtube.com/@MikiandRaymond",
+      "checkedOn": "2026-10-21",
+      "availability": "oembed-available",
+      "subtitleLines": 1,
+      "selection": "food-and-travel-caption-sample"
+    },
+    {
       "videoId": "jDMxeToplgU",
       "config": "maviskuku",
       "source": "youtube-cantonese",
@@ -486,6 +583,18 @@
       "colloquialLines": 2
     },
     {
+      "videoId": "mOsCFeqZHGI",
+      "config": "@MikiandRaymond",
+      "source": "youtube-caption-yue",
+      "title": "【90🇲🇾】開箱檳城的風水屋？！搬入去立即懷孕？移居馬來西亞🇲🇾消費降級？由4800尺搬去2400尺  #馬來西亞房價 #家庭生活 #檳城生活 #風水屋 #馬來西亞移居 #夫妻廢片",
+      "channel": "夫妻廢片",
+      "channelUrl": "https://www.youtube.com/@MikiandRaymond",
+      "checkedOn": "2026-10-21",
+      "availability": "oembed-available",
+      "subtitleLines": 1,
+      "selection": "food-and-travel-caption-sample"
+    },
+    {
       "videoId": "mweeZcWQzHQ",
       "config": "maviskuku",
       "source": "youtube-cantonese",
@@ -508,6 +617,18 @@
       "availability": "oembed-available",
       "subtitleLines": 230,
       "colloquialLines": 1
+    },
+    {
+      "videoId": "qUkfyVRzmSg",
+      "config": "@MikiandRaymond",
+      "source": "youtube-caption-yue",
+      "title": "【56🇲🇾】終於要選月子中心｜￼跟香港相差五倍價錢？酒店式五星級服務只要RM 1xxxx 包￼一日五餐 Baby Spa 孕婦按摩 Facial 醫生照顧 #￼馬來西亞生仔 #月子中心",
+      "channel": "夫妻廢片",
+      "channelUrl": "https://www.youtube.com/@MikiandRaymond",
+      "checkedOn": "2026-10-21",
+      "availability": "oembed-available",
+      "subtitleLines": 1,
+      "selection": "food-and-travel-caption-sample"
     },
     {
       "videoId": "rz8m6Q32Mr0",
