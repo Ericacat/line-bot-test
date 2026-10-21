@@ -4,14 +4,14 @@ import { synthesizeSpeech, speechEnabled } from '../lib/speech.js';
 
 // Best-effort cache: shares concurrent downloads within this instance, including failures.
 // It is not a durable counter or a cross-instance exactly-once guarantee.
-export function createSpeechCache({ now = Date.now, maxEntries = 32 } = {}) {
+export function createSpeechCache({ now = Date.now, maxEntries = 32, ttlMs = 10 * 60 * 1000 } = {}) {
     const entries = new Map();
     return async (token, request, synthesize) => {
         for (const [key, entry] of entries) if (entry.expiresAt <= now()) entries.delete(key);
         if (!entries.has(token)) {
             if (entries.size >= maxEntries) throw new Error('Speech cache full');
             const pending = Promise.resolve().then(() => synthesize(request.text));
-            entries.set(token, { expiresAt: request.expiresAt, pending });
+            entries.set(token, { expiresAt: Math.min(request.expiresAt, now() + ttlMs), pending });
         }
         return entries.get(token).pending;
     };

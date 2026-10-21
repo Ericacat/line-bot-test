@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createSpeech, synthesizeSpeech, speechEnabled, publicOrigin } from '../lib/speech.js';
-import { speechRequestToken, verifySpeechRequest } from '../lib/audio-token.js';
+import { speechRequestToken, verifySpeechRequest, SPEECH_URL_TTL_MS } from '../lib/audio-token.js';
 import { createAudioHandler, createSpeechCache } from '../api/tts.js';
 Object.assign(process.env, { TTS_ENABLED: 'true', PUBLIC_BASE_URL: 'https://bot.example.com',
     AUDIO_URL_SIGNING_SECRET: 'test-secret-with-at-least-32-bytes-long' });
@@ -32,7 +32,7 @@ test('concurrent downloads share synthesis; text, tampered and expired URLs neve
     assert.equal(calls, 1);
     for (const res of results) { assert.equal(res.code, 200); assert.equal(res.body.toString(), 'mp3'); }
     for (const query of [{ text: '你好' }, { token: token.slice(0, 10) + 'A' + token.slice(11) },
-        { token: speechRequestToken('你好', Date.now() - 600001) }]) {
+        { token: speechRequestToken('你好', Date.now() - SPEECH_URL_TTL_MS - 1) }]) {
         const res = response(); await handler({ method: 'GET', query }, res); assert.equal(res.code, 403);
     }
     assert.equal(calls, 1);
@@ -97,4 +97,27 @@ test('legacy configuration keeps speech enabled with Vercel URL and existing LIN
             if (original[key] === undefined) delete process.env[key]; else process.env[key] = original[key];
         }
     }
+});
+
+
+test('speech URLs remain valid for 14 days and expire at the boundary', () => {
+    const issuedAt = 1800000000000;
+    const token = speechRequestToken('你好', issuedAt);
+    assert.equal(SPEECH_URL_TTL_MS, 14 * 24 * 60 * 60 * 1000);
+    assert.equal(verifySpeechRequest(token, issuedAt + SPEECH_URL_TTL_MS - 1).text, '你好');
+    assert.equal(verifySpeechRequest(token, issuedAt + SPEECH_URL_TTL_MS), null);
+});
+
+test('download cache frees entries before long-lived URLs expire', async () => {
+    let now = 1000;
+    let calls = 0;
+    const cache = createSpeechCache({ now: () => now, maxEntries: 1, ttlMs: 100 });
+    const request = { text: '你好', expiresAt: now + SPEECH_URL_TTL_MS };
+    const synthesize = async () => { calls++; return Buffer.from('mp3'); };
+    await cache('first', request, synthesize);
+    await cache('first', request, synthesize);
+    assert.equal(calls, 1);
+    now += 100;
+    await cache('second', request, synthesize);
+    assert.equal(calls, 2);
 });
