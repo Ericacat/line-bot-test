@@ -40,3 +40,23 @@ test('bundled candidates contain valid original video times and playable timesta
         assert.ok(reply.includes(`https://www.youtube.com/watch?v=${entry.videoId}&t=${Math.floor(entry.start)}s`));
     }
 });
+
+
+test('expanded index and coverage report refer to checked sources and real search results', () => {
+    const read = name => JSON.parse(readFileSync(new URL(`../data/${name}`, import.meta.url)));
+    const index = read('cantonese-examples.json');
+    const catalog = read('cantonese-video-sources.json');
+    const coverage = read('cantonese-coverage.json');
+    const sources = new Map(catalog.videos.map(v => [v.videoId, v]));
+    for (const entry of index.entries) {
+        const video = sources.get(entry.videoId);
+        assert.equal(video?.availability, 'oembed-available');
+        assert.equal(entry.channel, video.channel);
+    }
+    assert.equal(coverage.videos, new Set(index.entries.map(e => e.videoId)).size);
+    assert.equal(coverage.subtitles, index.entries.length);
+    const rows = Object.values(coverage.groups).flat();
+    assert.equal(rows.length, coverage.total);
+    assert.equal(rows.filter(row => row.matched).length, coverage.matched);
+    for (const row of rows) assert.equal(row.matched, findExamples(row.term).length > 0);
+});

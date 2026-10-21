@@ -1,38 +1,76 @@
 import { readFile, writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-// Accept saved Hugging Face first-rows/rows responses; never download audio.
-const inputs = process.argv.slice(2);
-if (!inputs.length) throw new Error('Usage: node scripts/import-cantonese-examples.js sample.json [...]');
-const seen = new Set();
-const entries = [];
-function seconds(value) {
-    if (typeof value !== 'string' || !/^\d{2,}:\d{2}:\d{2}(?:\.\d+)?$/.test(value)) return NaN;
-    const [h, m, s] = value.split(':').map(Number);
+const COLLOQUIAL = /[唔佢嘅咗喺啲哋嗰咁冇乜嘢嚟]/u;
+export function subtitleSeconds(value) {
+    if (typeof value !== 'string' || !/^\d{2,}:\d{2}:\d{2}(?:[.,]\d+)?$/.test(value)) return NaN;
+    const [h, m, s] = value.replace(',', '.').split(':').map(Number);
     return m < 60 && s < 60 ? h * 3600 + m * 60 + s : NaN;
 }
-for (const input of inputs) {
-    const data = JSON.parse(await readFile(input, 'utf8'));
-    for (const item of data.rows) {
-        const row = item.row.json;
-        if (row.channel_id !== 'maviskuku' || !/^[\w-]{11}$/.test(row.video_id)) continue;
-        for (const segment of row.segments) {
-            const text = segment.text.trim();
-            // Candidate filter only: colloquial characters do not prove verbatim accuracy.
-            if (!/[唔佢嘅咗喺啲哋嗰咁冇乜嘢嚟]/u.test(text) || text.length > 180) continue;
-            const start = seconds(segment.start_time);
-            const end = seconds(segment.end_time);
-            if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start) continue;
-            const key = `${row.video_id}:${start}:${text}`;
-            if (seen.has(key)) continue;
-            seen.add(key);
-            entries.push({ videoId: row.video_id, title: row.title, channel: 'Maviskuku 雞蛋妹',
-                start, end, text });
+export function parseSrt(text) {
+    const segments = [];
+    for (const block of text.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n').trim().split(/\n\s*\n/u)) {
+        const lines = block.split('\n');
+        const at = lines.findIndex(line => line.includes('-->'));
+        const match = lines[at]?.match(/^(\S+)\s*-->\s*(\S+)(?:\s.*)?$/u);
+        if (!match) continue;
+        segments.push({ start_time: match[1], end_time: match[2],
+            text: lines.slice(at + 1).join(' ').replace(/<[^>]*>/g, '').trim() });
+    }
+    return segments;
+}
+export function buildExampleIndex(documents, catalog) {
+    const allowed = new Map(catalog.videos.filter(v => v.availability === 'oembed-available')
+        .map(video => [video.videoId, video]));
+    const entries = [];
+    const seen = new Set();
+    for (const document of documents) {
+        for (const item of document.rows ?? []) {
+            const row = item?.row?.json;
+            const video = allowed.get(row?.video_id);
+            if (!video || row.channel_id !== video.config || !/^[\w-]{11}$/.test(row.video_id)) continue;
+            for (const segment of Array.isArray(row.segments) ? row.segments : []) {
+                if (typeof segment?.text !== 'string') continue;
+                const text = segment.text.trim();
+                // Candidate filter only: colloquial characters do not prove verbatim accuracy.
+                if (!COLLOQUIAL.test(text) || [...text].length > 180) continue;
+                const start = subtitleSeconds(segment.start_time);
+                const end = subtitleSeconds(segment.end_time);
+                if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start) continue;
+                if (Number.isFinite(row.full_duration) && end > row.full_duration) continue;
+                const key = `${row.video_id}:${start}:${text}`;
+                if (seen.has(key)) continue;
+                seen.add(key);
+                entries.push({ videoId: row.video_id, title: video.title, channel: video.channel,
+                    source: video.source, start, end, text });
+            }
         }
     }
+    entries.sort((a, b) => a.videoId.localeCompare(b.videoId) || a.start - b.start || a.text.localeCompare(b.text));
+    if (!entries.length) throw new Error('No colloquial subtitle candidates found');
+    return { sources: catalog.sources, checkedOn: catalog.checkedOn,
+        review: 'subtitle-candidates-not-audio-verified', entries };
 }
-entries.sort((a, b) => a.videoId.localeCompare(b.videoId) || a.start - b.start);
-if (!entries.length) throw new Error('No colloquial subtitle candidates found');
-const output = { source: 'https://huggingface.co/datasets/OrcinusOrca/YouTube-Cantonese',
-    config: 'maviskuku', review: 'subtitle-candidates-not-audio-verified', entries };
-await writeFile(new URL('../data/cantonese-examples.json', import.meta.url), JSON.stringify(output, null, 2) + '\n');
-console.log(`Imported ${entries.length} subtitle candidates from ${new Set(entries.map(e => e.videoId)).size} videos`);
+async function main() {
+    const inputs = process.argv.slice(2);
+    if (!inputs.length) throw new Error('Usage: node scripts/import-cantonese-examples.js sample.json [...] [subtitles.srt ...]');
+    const catalog = JSON.parse(await readFile(new URL('../data/cantonese-video-sources.json', import.meta.url), 'utf8'));
+    const documents = [];
+    for (const input of inputs) {
+        const text = await readFile(input, 'utf8');
+        if (!input.toLowerCase().endsWith('.srt')) {
+            documents.push(JSON.parse(text));
+            continue;
+        }
+        const matches = catalog.videos.filter(video => input.includes(video.videoId));
+        if (matches.length !== 1) throw new Error(`SRT filename must contain one catalog video ID: ${input}`);
+        const video = matches[0];
+        documents.push({ rows: [{ row: { json: { video_id: video.videoId, channel_id: video.config,
+            segments: parseSrt(text) } } }] });
+    }
+    const index = buildExampleIndex(documents, catalog);
+    await writeFile(new URL('../data/cantonese-examples.json', import.meta.url), JSON.stringify(index, null, 2) + '\n');
+    console.log(`Imported ${index.entries.length} subtitle candidates from ${new Set(index.entries.map(e => e.videoId)).size} videos`);
+}
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await main();

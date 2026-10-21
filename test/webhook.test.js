@@ -182,7 +182,7 @@ test('speech cap is shared across users and redeployed handlers; reaching it nev
     assert.equal(h.server.get(LEDGER_KEY).value.tts, '1500');
     await h.send(h.makeEvent('字', { source: { userId: `U${'f'.repeat(32)}` } }));
     assert.equal(h.paid.length, 5);
-    assert.equal(h.replies.at(-1).length, 1);
+    assert.ok(h.replies.at(-1).every(message => message.type === 'text'));
     assert.match(h.replies.at(-1)[0].text, /語音已達 1,500/);
     // The independent translation quota remains usable.
     await h.send(h.makeEvent('中文：你好'));

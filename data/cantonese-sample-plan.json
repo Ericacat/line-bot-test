@@ -1,0 +1,322 @@
+{
+  "source": "https://huggingface.co/datasets/OrcinusOrca/YouTube-Cantonese",
+  "fetchedOn": "2026-10-21",
+  "note": "只列出有貢獻至本次索引的字幕回應；sha256 為本次原始回應，重新下載時暫存音訊 URL 等欄位可能改變。",
+  "snapshots": [
+    {
+      "fileName": "bot-canto-ahju.json",
+      "url": "https://datasets-server.huggingface.co/first-rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=ahju&split=train",
+      "rows": 74,
+      "sha256": "7c471d5c5686f376550366f6246bc2cfd0ee9b345f7f202b1ea7352d681c3022",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-0.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=0&length=100",
+      "rows": 100,
+      "sha256": "cc7f50df8a47d73cfad41245a7074b1c87d1e7ae6db0b7cd5f440422b9f4fef2",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-100.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=100&length=100",
+      "rows": 100,
+      "sha256": "cf1f4cea8944aec55fedf2e91c5655a25a7b4ef28984e6b604bc18777738c384",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-1000.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=1000&length=100",
+      "rows": 100,
+      "sha256": "cf8ec5f1b34f24f31a13da582b916bc5c9c7904a563b855c482abacc3b0a6bf0",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-1100.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=1100&length=100",
+      "rows": 100,
+      "sha256": "124e98296aa310856dc2178d7ea9510bb577170fc3807a7a690b1ae2f9266661",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-1600.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=1600&length=100",
+      "rows": 100,
+      "sha256": "c17ea160f3d15cc2f15f7e64b31d1a6468a71830dd1efcf92a7d458144a6aedc",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-1700.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=1700&length=100",
+      "rows": 100,
+      "sha256": "3a03753c728181e5bf948941c6c57a6131346b4a8c5fb1a3bcd6179788383f39",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-1800.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=1800&length=100",
+      "rows": 100,
+      "sha256": "3b17398f2b681acb33a36e94391d62c73fafb2f5d25dea44092a9f3b682256f8",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-1900.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=1900&length=100",
+      "rows": 100,
+      "sha256": "0aa81158aa4e8b0ced868804cacb2dc3c3d29dc23d244b69a9349117c5c27333",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-200.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=200&length=100",
+      "rows": 100,
+      "sha256": "955f7e45278a722a643b257077645bcb4f54b96c794d84a2a4ab1a2553dac9f2",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-2200.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=2200&length=100",
+      "rows": 100,
+      "sha256": "d8470cfa26319e27b4c1856e54c2279f747f642a02f94418577f9595e53d04ac",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-2400.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=2400&length=100",
+      "rows": 100,
+      "sha256": "f1636b46f3986de34f801733d3a7b0d66e06a2ae90a0aede8c2dea3064185dfe",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-2500.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=2500&length=100",
+      "rows": 100,
+      "sha256": "8ae3b0a83b3e4bb05b1edd5aaba90228dff31dd2c1417d9f493b6896ece4a258",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-2600.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=2600&length=100",
+      "rows": 100,
+      "sha256": "e5ae0aa07710a02a32f7915052b215b07c9bd4017b506cfe68eb2e3b1f7199f2",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-2700.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=2700&length=100",
+      "rows": 100,
+      "sha256": "ee1d879dc1a50f24205c06e96ebe18ca7b3d5f99895b1520e70cd5d2b74a63d3",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-2800.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=2800&length=100",
+      "rows": 100,
+      "sha256": "a0990d7d0d8da354f5beeda6e1cb8d84e25c0ec49f17f9abb26650097e94faf6",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-300.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=300&length=100",
+      "rows": 100,
+      "sha256": "bc59ca7411d113324cb2bfd7e906bfa800c5e30774dd2c61a4601ba57c0b762e",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-3000.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=3000&length=100",
+      "rows": 100,
+      "sha256": "63b943950074526427f6e865a709ceb14b1d100f400f59457b3cca4aa209a707",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-3200.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=3200&length=100",
+      "rows": 100,
+      "sha256": "b7e7c5e9320d29ec0b4f427d1a3995764045442757326f1a8381e84f53a0cdd1",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-3300.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=3300&length=100",
+      "rows": 100,
+      "sha256": "691785ad4179c4ed8f95c3de9008e9a09716cf813c07f66387bcbc2c5d165704",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-3700.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=3700&length=100",
+      "rows": 34,
+      "sha256": "1d6ace8a5fdbd1e1e544c68908b9f5179336c7dd26ad820c9facf3a45f9317e4",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-700.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=700&length=100",
+      "rows": 100,
+      "sha256": "608f65ed6297f982434453ee55cf3b8158eb1335e814782718a4a11ab1213c74",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "maviskuku-800.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=800&length=100",
+      "rows": 100,
+      "sha256": "dba3bf46a15faac03747cc5177c19c7d0384edae4159bfba1a0d0b1bfd48fe0f",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "mm.millmilk-0.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=mm.millmilk&split=train&offset=0&length=100",
+      "rows": 100,
+      "sha256": "71fc0d6d47aa76a44f6735dd8e7840ce0f2b832303967c231f50abf0be25b07d",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "mm.millmilk-11742.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=mm.millmilk&split=train&offset=11742&length=100",
+      "rows": 100,
+      "sha256": "d8a50caa58385ac77888d0ed6c9e96f7721ad72ed203375a872259b6c5a99c1d",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "mm.millmilk-15657.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=mm.millmilk&split=train&offset=15657&length=100",
+      "rows": 100,
+      "sha256": "f9d5a590bada49884396159f9bf0cbac49549774e034407d47fc228a6d7d392b",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "mm.millmilk-27400.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=mm.millmilk&split=train&offset=27400&length=100",
+      "rows": 100,
+      "sha256": "8b46baf48b8b13e9ffcd0f97ccf5c9e3cd7f5fa8ca97e0941112f3536de9bdfc",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "mm.millmilk-3914.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=mm.millmilk&split=train&offset=3914&length=100",
+      "rows": 100,
+      "sha256": "877d120b07da10056fd4e94f620ee8929eaab0b8374f3c553b9129c18b2f1981",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "mpweekly-first.json",
+      "url": "https://datasets-server.huggingface.co/first-rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=mpweekly&split=train",
+      "rows": 100,
+      "sha256": "459c7996f4d562854725bb5420963604ad816335ca8b23c3f3679dcc591a8135",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "sunchannelhk-4171.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=sunchannelhk&split=train&offset=4171&length=100",
+      "rows": 100,
+      "sha256": "7e59e445bbd112aadf0bd1ed91d46a9f3eff2951d76df6aeae4d8cda5ebacc1a",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "bot-canto-mavis-100.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=100&length=100",
+      "rows": 100,
+      "sha256": "880523ecf31ab9429a54d5535fb7a38e94e1619de30d8a489ed5fd7282411503",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "bot-canto-mavis-3000.json",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train&offset=3000&length=100",
+      "rows": 100,
+      "sha256": "231fabc0fef8e7b09363a7e9756b594ae5ee560951f269a4e2a4d64265f54456",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "bot-canto-maviskuku.json",
+      "url": "https://datasets-server.huggingface.co/first-rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=maviskuku&split=train",
+      "rows": 85,
+      "sha256": "a5ec0365263bcef3c27422a116510ba553676d90b00aefa020f03fa7aa1e37d4",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "bot-canto-mingjai14.json",
+      "url": "https://datasets-server.huggingface.co/first-rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=mingjai14&split=train",
+      "rows": 74,
+      "sha256": "5ec86df8533f2fa628bfe3b22d30598b5db48712dc3d96d5ffe1b02050d4b916",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    },
+    {
+      "fileName": "bot-canto-pinkytalks.json",
+      "url": "https://datasets-server.huggingface.co/first-rows?dataset=OrcinusOrca%2FYouTube-Cantonese&config=pinkytalks&split=train",
+      "rows": 80,
+      "sha256": "47d1784378dd883841cd72fab89b4f4e943f6bec84074222b04e88806382c87a",
+      "datasetRevisions": [
+        "38e3c9e1912b040e94f9a6e1ebcf0a07e55ae7de"
+      ]
+    }
+  ]
+}

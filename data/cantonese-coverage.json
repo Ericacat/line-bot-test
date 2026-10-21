@@ -1,0 +1,788 @@
+{
+  "metric": "literal-subtitle-match-not-audio-verification",
+  "videos": 46,
+  "subtitles": 2223,
+  "total": 100,
+  "matched": 67,
+  "missing": [
+    "嗰度",
+    "邊度",
+    "點樣",
+    "唔該",
+    "對唔住",
+    "早晨",
+    "食嘢",
+    "飲水",
+    "飲茶",
+    "肚餓",
+    "口渴",
+    "早餐",
+    "午餐",
+    "好食",
+    "好飲",
+    "畀錢",
+    "埋單",
+    "返工",
+    "放工",
+    "返學",
+    "放假",
+    "瞓覺",
+    "起身",
+    "返屋企",
+    "落車",
+    "唔開心",
+    "嬲",
+    "得閒",
+    "聽日",
+    "尋日",
+    "仲未",
+    "試吓",
+    "睇吓"
+  ],
+  "groups": {
+    "人物與位置": [
+      {
+        "term": "我",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=17s",
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=164s",
+          "https://www.youtube.com/watch?v=mweeZcWQzHQ&t=44s"
+        ]
+      },
+      {
+        "term": "你",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=163s",
+          "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=103s",
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=98s"
+        ]
+      },
+      {
+        "term": "佢",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=fKEaj3fHLcE&t=450s",
+          "https://www.youtube.com/watch?v=ZwJZK9ykdB8&t=138s",
+          "https://www.youtube.com/watch?v=rz8m6Q32Mr0&t=274s"
+        ]
+      },
+      {
+        "term": "我哋",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=373s",
+          "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=65s",
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=600s"
+        ]
+      },
+      {
+        "term": "你哋",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=598s",
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=547s",
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=24s"
+        ]
+      },
+      {
+        "term": "佢哋",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=5s",
+          "https://www.youtube.com/watch?v=0BnGur1xtAo&t=16s",
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=439s"
+        ]
+      },
+      {
+        "term": "呢個",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=278s",
+          "https://www.youtube.com/watch?v=rz8m6Q32Mr0&t=81s",
+          "https://www.youtube.com/watch?v=R7fTvnUnwvY&t=271s"
+        ]
+      },
+      {
+        "term": "嗰個",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=1005s",
+          "https://www.youtube.com/watch?v=jDMxeToplgU&t=86s",
+          "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=260s"
+        ]
+      },
+      {
+        "term": "呢度",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=jLBeLMZlVsU&t=528s"
+        ]
+      },
+      {
+        "term": "嗰度",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "邊度",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "屋企",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=KVUGmzVh9tQ&t=129s",
+          "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=420s",
+          "https://www.youtube.com/watch?v=-OU-fQ_MN6g&t=105s"
+        ]
+      },
+      {
+        "term": "朋友",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=282s",
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=308s",
+          "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=389s"
+        ]
+      },
+      {
+        "term": "同事",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=uotdjtgj-w8&t=444s",
+          "https://www.youtube.com/watch?v=-6rzvl8d8H0&t=361s",
+          "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=367s"
+        ]
+      },
+      {
+        "term": "小朋友",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=270s"
+        ]
+      }
+    ],
+    "問句與常用說法": [
+      {
+        "term": "乜嘢",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=52s",
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=400s",
+          "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=50s"
+        ]
+      },
+      {
+        "term": "咩",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=163s",
+          "https://www.youtube.com/watch?v=rz8m6Q32Mr0&t=103s",
+          "https://www.youtube.com/watch?v=-j3xBMLO58c&t=36s"
+        ]
+      },
+      {
+        "term": "點解",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=ZwJZK9ykdB8&t=138s",
+          "https://www.youtube.com/watch?v=dvYoK7-7y9k&t=185s",
+          "https://www.youtube.com/watch?v=KVUGmzVh9tQ&t=98s"
+        ]
+      },
+      {
+        "term": "點樣",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "幾時",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=GRWhlU9Agbg&t=326s",
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=1011s"
+        ]
+      },
+      {
+        "term": "幾多",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=9tJYUpruajg&t=399s",
+          "https://www.youtube.com/watch?v=fKEaj3fHLcE&t=104s",
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=52s"
+        ]
+      },
+      {
+        "term": "邊個",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=449s",
+          "https://www.youtube.com/watch?v=9tJYUpruajg&t=80s"
+        ]
+      },
+      {
+        "term": "有冇",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=R7fTvnUnwvY&t=398s",
+          "https://www.youtube.com/watch?v=t0HwTTFwew4&t=263s",
+          "https://www.youtube.com/watch?v=t0HwTTFwew4&t=230s"
+        ]
+      },
+      {
+        "term": "係咪",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=0BnGur1xtAo&t=457s",
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=414s",
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=373s"
+        ]
+      },
+      {
+        "term": "可唔可以",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=fKEaj3fHLcE&t=430s",
+          "https://www.youtube.com/watch?v=uotdjtgj-w8&t=49s",
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=367s"
+        ]
+      },
+      {
+        "term": "唔係",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=159s",
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=409s",
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=994s"
+        ]
+      },
+      {
+        "term": "唔知",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=t0HwTTFwew4&t=263s",
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=449s",
+          "https://www.youtube.com/watch?v=fKEaj3fHLcE&t=39s"
+        ]
+      },
+      {
+        "term": "唔使",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=248s"
+        ]
+      },
+      {
+        "term": "唔該",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "多謝",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=104s",
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=1344s"
+        ]
+      },
+      {
+        "term": "對唔住",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "唔好意思",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=QlvKBvtn_jU&t=221s",
+          "https://www.youtube.com/watch?v=0Jk_bbkSA3g&t=430s"
+        ]
+      },
+      {
+        "term": "早晨",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "再見",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=jLBeLMZlVsU&t=617s",
+          "https://www.youtube.com/watch?v=jDMxeToplgU&t=372s",
+          "https://www.youtube.com/watch?v=-OU-fQ_MN6g&t=414s"
+        ]
+      },
+      {
+        "term": "拜拜",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=jLBeLMZlVsU&t=617s"
+        ]
+      }
+    ],
+    "飲食與購物": [
+      {
+        "term": "食飯",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=433s",
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=235s",
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=414s"
+        ]
+      },
+      {
+        "term": "食嘢",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "飲水",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "飲茶",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "肚餓",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "口渴",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "早餐",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "午餐",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "晚餐",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=cci6x_8P6XQ&t=618s"
+        ]
+      },
+      {
+        "term": "好食",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "好飲",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "買嘢",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=31s",
+          "https://www.youtube.com/watch?v=GRWhlU9Agbg&t=343s",
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=439s"
+        ]
+      },
+      {
+        "term": "幾錢",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=994s",
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=499s"
+        ]
+      },
+      {
+        "term": "平啲",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=0BnGur1xtAo&t=456s",
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=592s"
+        ]
+      },
+      {
+        "term": "貴",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=t0HwTTFwew4&t=78s",
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=567s",
+          "https://www.youtube.com/watch?v=uotdjtgj-w8&t=453s"
+        ]
+      },
+      {
+        "term": "畀錢",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "埋單",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "現金",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=443s",
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=122s",
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=144s"
+        ]
+      },
+      {
+        "term": "八達通",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=323s",
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=16s",
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=337s"
+        ]
+      },
+      {
+        "term": "餐廳",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=uotdjtgj-w8&t=408s",
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=235s",
+          "https://www.youtube.com/watch?v=uotdjtgj-w8&t=411s"
+        ]
+      }
+    ],
+    "日常與交通": [
+      {
+        "term": "返工",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "放工",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "返學",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "放假",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "瞓覺",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "起身",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "沖涼",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=t0HwTTFwew4&t=390s"
+        ]
+      },
+      {
+        "term": "出街",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=433s",
+          "https://www.youtube.com/watch?v=GRWhlU9Agbg&t=446s",
+          "https://www.youtube.com/watch?v=5NFEEyAxFLk&t=180s"
+        ]
+      },
+      {
+        "term": "返屋企",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "搭車",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=KVUGmzVh9tQ&t=129s",
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=430s",
+          "https://www.youtube.com/watch?v=A0OONI5Qjcg&t=235s"
+        ]
+      },
+      {
+        "term": "巴士",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=cci6x_8P6XQ&t=253s"
+        ]
+      },
+      {
+        "term": "港鐵",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=0BnGur1xtAo&t=182s"
+        ]
+      },
+      {
+        "term": "落車",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "行路",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=ZwJZK9ykdB8&t=382s"
+        ]
+      },
+      {
+        "term": "遲到",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=uotdjtgj-w8&t=25s"
+        ]
+      }
+    ],
+    "感受與描述": [
+      {
+        "term": "攰",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=cci6x_8P6XQ&t=425s",
+          "https://www.youtube.com/watch?v=5NFEEyAxFLk&t=97s",
+          "https://www.youtube.com/watch?v=5NFEEyAxFLk&t=300s"
+        ]
+      },
+      {
+        "term": "開心",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=391s",
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=689s",
+          "https://www.youtube.com/watch?v=dvYoK7-7y9k&t=442s"
+        ]
+      },
+      {
+        "term": "唔開心",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "鍾意",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=52s",
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=308s",
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=93s"
+        ]
+      },
+      {
+        "term": "驚",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=fKEaj3fHLcE&t=294s",
+          "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=36s",
+          "https://www.youtube.com/watch?v=-OU-fQ_MN6g&t=105s"
+        ]
+      },
+      {
+        "term": "嬲",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "靚",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=R7fTvnUnwvY&t=276s",
+          "https://www.youtube.com/watch?v=jDMxeToplgU&t=76s",
+          "https://www.youtube.com/watch?v=5NFEEyAxFLk&t=209s"
+        ]
+      },
+      {
+        "term": "好睇",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=GRWhlU9Agbg&t=96s",
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=1190s",
+          "https://www.youtube.com/watch?v=0BnGur1xtAo&t=50s"
+        ]
+      },
+      {
+        "term": "好用",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=ZwJZK9ykdB8&t=248s",
+          "https://www.youtube.com/watch?v=0BnGur1xtAo&t=64s",
+          "https://www.youtube.com/watch?v=GRWhlU9Agbg&t=43s"
+        ]
+      },
+      {
+        "term": "得閒",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "舒服",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=fKEaj3fHLcE&t=160s",
+          "https://www.youtube.com/watch?v=cci6x_8P6XQ&t=419s",
+          "https://www.youtube.com/watch?v=KVUGmzVh9tQ&t=83s"
+        ]
+      },
+      {
+        "term": "麻煩",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=5NFEEyAxFLk&t=118s"
+        ]
+      },
+      {
+        "term": "犀利",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=-j3xBMLO58c&t=36s"
+        ]
+      },
+      {
+        "term": "認真",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=rz8m6Q32Mr0&t=299s"
+        ]
+      },
+      {
+        "term": "方便",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=t0HwTTFwew4&t=303s",
+          "https://www.youtube.com/watch?v=ZwJZK9ykdB8&t=185s",
+          "https://www.youtube.com/watch?v=Hq0hnLgl77w&t=508s"
+        ]
+      }
+    ],
+    "時間與動作": [
+      {
+        "term": "今日",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=-RyMoVr4uhY&t=159s",
+          "https://www.youtube.com/watch?v=0BnGur1xtAo&t=43s",
+          "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=29s"
+        ]
+      },
+      {
+        "term": "聽日",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "尋日",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "而家",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=466LT31Qf0Q&t=692s",
+          "https://www.youtube.com/watch?v=jLBeLMZlVsU&t=69s"
+        ]
+      },
+      {
+        "term": "頭先",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=540s"
+        ]
+      },
+      {
+        "term": "陣間",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=jLBeLMZlVsU&t=86s",
+          "https://www.youtube.com/watch?v=fKEaj3fHLcE&t=51s"
+        ]
+      },
+      {
+        "term": "一陣",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=t0HwTTFwew4&t=159s",
+          "https://www.youtube.com/watch?v=TUH3ppazMwQ&t=540s",
+          "https://www.youtube.com/watch?v=0BnGur1xtAo&t=460s"
+        ]
+      },
+      {
+        "term": "已經",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=-OU-fQ_MN6g&t=101s",
+          "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=308s",
+          "https://www.youtube.com/watch?v=cci6x_8P6XQ&t=547s"
+        ]
+      },
+      {
+        "term": "仲未",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "成日",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=9tJYUpruajg&t=647s",
+          "https://www.youtube.com/watch?v=jDMxeToplgU&t=303s",
+          "https://www.youtube.com/watch?v=GRWhlU9Agbg&t=343s"
+        ]
+      },
+      {
+        "term": "一齊",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=R7fTvnUnwvY&t=330s",
+          "https://www.youtube.com/watch?v=uotdjtgj-w8&t=55s",
+          "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=389s"
+        ]
+      },
+      {
+        "term": "試吓",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "睇吓",
+        "matched": false,
+        "exampleUrls": []
+      },
+      {
+        "term": "等等",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=9TQbkhuzIfQ&t=177s",
+          "https://www.youtube.com/watch?v=GRWhlU9Agbg&t=60s",
+          "https://www.youtube.com/watch?v=ZwJZK9ykdB8&t=355s"
+        ]
+      },
+      {
+        "term": "幫手",
+        "matched": true,
+        "exampleUrls": [
+          "https://www.youtube.com/watch?v=uotdjtgj-w8&t=343s",
+          "https://www.youtube.com/watch?v=uotdjtgj-w8&t=202s",
+          "https://www.youtube.com/watch?v=uotdjtgj-w8&t=188s"
+        ]
+      }
+    ]
+  }
+}
