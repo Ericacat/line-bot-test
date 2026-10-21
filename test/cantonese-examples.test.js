@@ -60,3 +60,29 @@ test('expanded index and coverage report refer to checked sources and real searc
     assert.equal(rows.filter(row => row.matched).length, coverage.matched);
     for (const row of rows) assert.equal(row.matched, findExamples(row.term).length > 0);
 });
+
+test('related search prefers the full sentence, otherwise ranks real keyword coverage and labels partial matches', async () => {
+    const { searchExamples, extractExampleKeywords } = await import('../lib/cantonese-examples.js');
+    const entry = (videoId, text) => ({ videoId, text, start: 12.8, channel: '測試頻道' });
+    const query = '你幾點出發呀';
+    const exact = entry('aaaaaaaaaaa', query);
+    const strong = entry('bbbbbbbbbbb', '我聽日幾點先可以出發');
+    const weak = entry('ccccccccccc', '我哋準備出發');
+    const exactResult = searchExamples(query, [weak, strong, exact]);
+    assert.equal(exactResult.kind, 'exact');
+    assert.deepEqual(exactResult.matches, [exact]);
+    const related = searchExamples(query, [weak, strong]);
+    assert.equal(related.kind, 'related');
+    assert.equal(related.matches.length, 1);
+    assert.equal(related.matches[0].videoId, strong.videoId);
+    assert.ok(related.matches[0].matchedKeywords.includes('出發'));
+    assert.ok(related.matches[0].matchedKeywords.includes('幾點'));
+    const reply = exampleReply(query, related);
+    assert.match(reply, /相關例句（非完整原句）/);
+    assert.ok(reply.includes(strong.text));
+    assert.ok(reply.includes('相關詞：'));
+    assert.match(reply, /&t=12s/);
+    assert.deepEqual(extractExampleKeywords('呢個係乜嘢'), []);
+    assert.equal(searchExamples('你幾點出發呀', [entry('ddddddddddd', '你我佢')]).kind, 'none');
+    assert.equal(searchExamples('出發', [entry('eeeeeeeeeee', '出去玩')]).kind, 'none');
+});

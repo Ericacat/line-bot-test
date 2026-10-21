@@ -178,3 +178,17 @@ test('unified translation routes Mandarin to learning replies and Cantonese to C
     assert.equal(h.replies[1].length, 1);
     assert.match(h.replies[1][0].text, /^中文翻譯：/);
 });
+
+test('long requests use labeled related video examples before synthesis', async () => {
+    const h = setup();
+    let spoken = 0;
+    const handler = createWebhookHandler({ ...h.deps,
+        speech: async () => { spoken++; throw new Error('Unexpected synthesis'); } });
+    await send(handler, event('related-video', '你可唔可以幫我買耳機'));
+    assert.equal(spoken, 0);
+    assert.equal(h.requests.length, 0);
+    assert.match(h.replies[0][1].text, /相關例句（非完整原句）/);
+    assert.match(h.replies[0][1].text, /相關詞：耳機/);
+    assert.match(h.replies[0][1].text, /youtube\.com/);
+    assert.ok(h.replies[0].every(message => message.type === 'text'));
+});

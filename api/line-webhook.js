@@ -4,7 +4,7 @@ import { parseTranslation, translateText, TranslationError, TRANSLATION_HELP } f
 import { checkText, isFreshEvent, ProtectionError } from '../lib/cost-policy.js';
 import { createEventGuard } from '../lib/event-guard.js';
 import { createSpeech, speechEnabled } from '../lib/speech.js';
-import { parseExampleQuery, exampleReply, findExamples } from '../lib/cantonese-examples.js';
+import { parseExampleQuery, exampleReply, searchExamples } from '../lib/cantonese-examples.js';
 
 import { travelLearningReply } from '../lib/travel-learning.js';
 
@@ -60,8 +60,9 @@ export function createWebhookHandler({ store, eventGuard = sharedEventGuard, rep
                 } else {
                     const jyutping = toJyutping(audioText);
                     messages = [{ type: 'text', text: jyutping ? `${replyText}\n粵拼：${jyutping}` : replyText }];
-                    if (findExamples(audioText).length) {
-                        messages.push({ type: 'text', text: exampleReply(audioText) });
+                    const examples = searchExamples(audioText);
+                    if (examples.matches.length) {
+                        messages.push({ type: 'text', text: exampleReply(audioText, examples) });
                     } else if (speechEnabled()) {
                         try {
                             messages.push(await speech(audioText, context, { store }));
