@@ -71,3 +71,13 @@ test('unified translation infers Cantonese cues, defaults shared phrases to Cant
     assert.equal(parseTranslation('翻譯這個多少錢'), null);
     assert.equal(parseTranslation('翻譯：').text, '');
 });
+
+
+test('food sentences with colloquial 食 route to Chinese without misclassifying standard Chinese food terms', () => {
+    for (const text of ['我泥到香港一定要食蛋撻', '我來到香港一定要食蛋撻', '我想食雞肉', '食蛋挞', '你想食牛肉嗎']) {
+        assert.equal(parseTranslation(`翻譯：${text}`).target, 'zh-TW', text);
+    }
+    for (const text of ['我想買食物', '我要食物', '食品很好吃', '我想去食堂', '我想食用這個產品', '食材很新鮮']) {
+        assert.equal(parseTranslation(`翻譯：${text}`).target, 'yue', text);
+    }
+});

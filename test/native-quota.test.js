@@ -203,3 +203,17 @@ test('speech failure still preserves matching video examples', async () => {
     assert.match(h.replies[0][0].text, /語音暫時無法使用/);
     assert.match(h.replies[0][1].text, /youtube\.com/);
 });
+
+
+test('Cantonese food input with a colloquial eating verb translates to Chinese only', async () => {
+    const h = setup();
+    let spoken = 0;
+    const handler = createWebhookHandler({ ...h.deps, speech: async () => { spoken++; } });
+    await send(handler, event('food-auto-direction', '翻譯：我泥到香港一定要食蛋撻'));
+    assert.equal(h.requests[0].body.sourceLanguageCode, 'yue');
+    assert.equal(h.requests[0].body.targetLanguageCode, 'zh-TW');
+    assert.equal(h.requests[0].body.contents[0], '我泥到香港一定要食蛋撻');
+    assert.match(h.replies[0][0].text, /^中文翻譯：/);
+    assert.equal(h.replies[0].length, 1);
+    assert.equal(spoken, 0);
+});
